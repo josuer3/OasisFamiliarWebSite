@@ -11,6 +11,10 @@ namespace Model.DataModel
     {
         [Key]
         public int idRol { get; set; }
+        [Required]
         public string Nombre_Rol { get; set; }
+        [Required]
+        [StringLength(300)]
+        public string Descripcion { get; set; }
     }
 }

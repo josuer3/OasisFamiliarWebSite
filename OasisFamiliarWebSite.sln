@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OasisFamiliarWebSite", "Oas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{A5850C87-31A2-4665-9E7F-C8A7EF7348DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OasisFamiliarServices", "OasisFamiliarServices\OasisFamiliarServices.csproj", "{C7F45EFF-8241-4016-B5D6-7028A6B5CBCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A5850C87-31A2-4665-9E7F-C8A7EF7348DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5850C87-31A2-4665-9E7F-C8A7EF7348DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5850C87-31A2-4665-9E7F-C8A7EF7348DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F45EFF-8241-4016-B5D6-7028A6B5CBCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F45EFF-8241-4016-B5D6-7028A6B5CBCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F45EFF-8241-4016-B5D6-7028A6B5CBCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F45EFF-8241-4016-B5D6-7028A6B5CBCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
