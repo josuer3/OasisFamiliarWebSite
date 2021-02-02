@@ -25,6 +25,7 @@ namespace OasisFamiliarWebSite.Servics.Call
 
             return false;
         }
+
         public bool CrearUsuario(RegisterVM model)
         {
             Usuario user = new Usuario();
@@ -36,6 +37,14 @@ namespace OasisFamiliarWebSite.Servics.Call
             _manejoUsuarioRepo.ReistrarUsuarios(user);
 
             return true;
+        }
+
+
+        public bool ValidandoNombreDeUsuario(string Name)
+        {
+            bool Exito = _manejoUsuarioRepo.VerifyIfUserNameExist(Name);
+                return Exito;
+
         }
 
         public bool ValidacionPassword( int iduser , string pass)

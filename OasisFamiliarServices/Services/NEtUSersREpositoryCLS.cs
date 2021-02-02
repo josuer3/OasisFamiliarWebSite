@@ -26,6 +26,16 @@ namespace OasisFamiliarServices.Services
             
         }
 
+        public bool VerifyIfUserNameExist(string Name)
+        {
+            int UserResult = db.Usuario.Where(x => x.Nombre_Usuario == Name).Count();
+            if (UserResult > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public string Encrypt(string Password)
         {
             byte[] salt;

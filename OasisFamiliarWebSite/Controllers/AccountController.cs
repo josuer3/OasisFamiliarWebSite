@@ -13,6 +13,7 @@ namespace OasisFamiliarWebSite.Controllers
     public class AccountController : Controller
     {
         UsersServices _manejoUserServices = new UsersServices();
+        
 
         // GET: Account
         public ActionResult Login()
@@ -53,6 +54,18 @@ namespace OasisFamiliarWebSite.Controllers
             }
 
             return RedirectToAction("Login","Account");
+        }
+
+        //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
+        public JsonResult VerifyIfUserExist(string Nombre_Usuario)
+        {
+            bool Exito = false;
+            if (_manejoUserServices.ValidandoNombreDeUsuario(Nombre_Usuario))
+            {
+                Exito = true;
+                return Json(Exito);
+            }
+            return Json(Exito);
         }
     }
 }
