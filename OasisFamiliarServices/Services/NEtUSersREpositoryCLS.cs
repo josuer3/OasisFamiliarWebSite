@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.DataModel;
 using System.Security.Cryptography;
+using System.Data.Entity.Validation;
 
 namespace OasisFamiliarServices.Services
 {
@@ -22,8 +23,19 @@ namespace OasisFamiliarServices.Services
                 db.Usuario.Add(model);
                 db.SaveChanges();
             }
-            catch (Exception e) { };
-            
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+            }   
         }
 
         public bool VerifyIfUserNameExist(string Name)
@@ -35,7 +47,17 @@ namespace OasisFamiliarServices.Services
             }
             return true;
         }
+        public Usuario getUserByName(string Name)
+        {
+            Usuario user = db.Usuario.Where(x => x.Nombre_Usuario == Name).Single();
+            return user;
+        }
 
+        public Usuario getUserByID(int id)
+        {
+            Usuario user = db.Usuario.Where(x => x.idUsuario == id).Single();
+            return user;
+        }
         public string Encrypt(string Password)
         {
             byte[] salt;

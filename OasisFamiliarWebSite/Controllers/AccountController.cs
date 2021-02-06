@@ -57,15 +57,16 @@ namespace OasisFamiliarWebSite.Controllers
         }
 
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
+        
+            
+        
+        [HttpPost]
         public JsonResult VerifyIfUserExist(string Nombre_Usuario)
         {
-            bool Exito = false;
-            if (_manejoUserServices.ValidandoNombreDeUsuario(Nombre_Usuario))
-            {
-                Exito = true;
+                bool Exito = _manejoUserServices.ValidandoNombreDeUsuario(Nombre_Usuario);
                 return Json(Exito);
-            }
-            return Json(Exito);
-        }
+         }
+        
+        
     }
 }
