@@ -29,8 +29,18 @@ namespace OasisFamiliarWebSite.Controllers
             {
                 if (_manejoUserServices.IniciarSesion(Model))
                 {
+                    string rol = _manejoUserServices.getRoll(Model);
+                    //Obtener rol
 
-                    return RedirectToAction("Index", "Home");
+                    if (rol == "1")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else {
+                        return RedirectToAction("Register", "Account");
+                    }
+                    // 1 cliente
+                   
                 }
             }
             @ViewBag.Message = "Error";

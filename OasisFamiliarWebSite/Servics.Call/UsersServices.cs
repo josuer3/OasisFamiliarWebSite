@@ -63,5 +63,18 @@ namespace OasisFamiliarWebSite.Servics.Call
             return Exito;
 
         }
+
+
+        //Obtener rol
+        public string getRoll(LoginVM model)
+        {
+            string rol = "";
+            var user = db.Usuario.Where(y => y.Nombre_Usuario == model.UUsuario).Single();
+
+            rol = user.idRol.ToString();
+
+            return rol;
+        }
+
     }
 }
