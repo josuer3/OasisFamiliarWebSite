@@ -71,7 +71,7 @@ namespace OasisFamiliarWebSite.Servics.Call
             string rol = "";
             var user = db.Usuario.Where(y => y.Nombre_Usuario == model.UUsuario).Single();
 
-            rol = user.idRol.ToString();
+            rol = user.Role.Nombre_Rol.ToString();
 
             return rol;
         }

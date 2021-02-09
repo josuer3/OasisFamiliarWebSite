@@ -29,18 +29,26 @@ namespace OasisFamiliarWebSite.Controllers
             {
                 if (_manejoUserServices.IniciarSesion(Model))
                 {
-                    string rol = _manejoUserServices.getRoll(Model);
                     //Obtener rol
+                    string rol = _manejoUserServices.getRoll(Model);
 
-                    if (rol == "1")
-                    {
-                        return RedirectToAction("Index", "Home");
+                    //Calcular accion para Rol
+                    switch (rol)
+                    { 
+                        case "Cliente":
+                            return RedirectToAction("Register", "Account");
+
+                        case "Mesero":
+                            return RedirectToAction("About", "Home");
+                        
+                        //case "Administrador":
+                           //return RedirectToAction("", "")
+
+                       
+
                     }
-                    else {
-                        return RedirectToAction("Register", "Account");
-                    }
-                    // 1 cliente
-                   
+
+
                 }
             }
             @ViewBag.Message = "Error";
