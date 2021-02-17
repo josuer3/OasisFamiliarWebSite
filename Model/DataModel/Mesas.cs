@@ -11,7 +11,9 @@ namespace Model.DataModel
     {
         [Key]
         public int idMesa { get; set; }
+        [Display(Name = "Mesas")]
         public string Nombre_Mesa { get; set; }
+        public bool Disponible { get; set; }
         
     }
 }

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Model.DataModel.Mesas>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
+}
+
+<h2>Modulo Mesero</h2>
+
+<table class="table table-bordered border border-success">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_Mesa)
+            </th>
+            <th>
+                Estado
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Mesa)
+
+                </td>
+                <td>
+                    @if (item.Disponible)
+                    {
+                        <button type="button" class="btn btn-success">Disponible</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-danger">No Disponible</button>
+                    }
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

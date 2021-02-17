@@ -39,7 +39,7 @@ namespace OasisFamiliarWebSite.Controllers
                             return RedirectToAction("Register", "Account");
 
                         case "Mesero":
-                            return RedirectToAction("About", "Home");
+                            return RedirectToAction("Index", "Receptionist");
                         
                         //case "Administrador":
                            //return RedirectToAction("", "")

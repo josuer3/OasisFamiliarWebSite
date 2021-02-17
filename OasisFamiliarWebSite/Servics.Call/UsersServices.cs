@@ -31,8 +31,8 @@ namespace OasisFamiliarWebSite.Servics.Call
             Usuario user = new Usuario();
             user.Nombre_Usuario = model.Nombre_Usuario;
             user.Password = model.Password;
-            user.Posicion = model.Posicion;
-            user.premio = model.premio;
+            //user.Posicion = model.Posicion;
+            //user.premio = model.premio;
 
             _manejoUsuarioRepo.ReistrarUsuarios(user);
 

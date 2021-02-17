@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.DataModel;
+using OasisFamiliarWebSite.Models;
+
 
 namespace OasisFamiliarWebSite.Controllers
 {
@@ -11,7 +14,13 @@ namespace OasisFamiliarWebSite.Controllers
         // GET: Receptionist
         public ActionResult Index()
         {
-            return View();
+            List<Mesas> ListaMesas = null;
+            using (var bd = new ContextDB())
+            {
+                ListaMesas = bd.Mesas.ToList();
+             }
+            return View(ListaMesas);
         }
+
     }
 }
