@@ -197,12 +197,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Receptionist\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutReceptionist.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Cooker\" />
-    <Folder Include="Views\Customer\" />
     <Folder Include="Views\LoginVM\" />
     <Folder Include="Views\Owner\" />
   </ItemGroup>
