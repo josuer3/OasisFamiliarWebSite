@@ -9,9 +9,20 @@
     <title>@ViewBag.Title - Siveresoft-UTEC</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            background-color: black;
+        }
+
+        h2 {
+            color:white;
+        }
+    </style>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-light" style="        background-color: #800000;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -26,7 +37,7 @@
                     <li>@Html.ActionLink("Inicio", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Menu", "Index", "Customer")</li>
                     <li>@Html.ActionLink("Cuenta", "Index", "Customer")</li>
-                    <li>@Html.ActionLink("Salir Del Sistema", "Contact", "Receptionist")</li>
+                    <li>@Html.ActionLink("Salir", "Contact", "Receptionist")</li>
                 </ul>
 
             </div>
