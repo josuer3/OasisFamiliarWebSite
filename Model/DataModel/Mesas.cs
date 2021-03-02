@@ -13,7 +13,7 @@ namespace Model.DataModel
         public int idMesa { get; set; }
         [Display(Name = "Mesas")]
         public string Nombre_Mesa { get; set; }
-        public bool Disponible { get; set; }
+        public int Disponible { get; set; }
         
     }
 }
