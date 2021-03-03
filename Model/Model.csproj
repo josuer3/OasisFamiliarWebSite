@@ -60,9 +60,9 @@
     <Compile Include="DataModel\Menu.cs" />
     <Compile Include="DataModel\Mesas.cs" />
     <Compile Include="DataModel\Rol.cs" />
-    <Compile Include="Migrations\202103012209477_Initial.cs" />
-    <Compile Include="Migrations\202103012209477_Initial.designer.cs">
-      <DependentUpon>202103012209477_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202103021913180_Initial.cs" />
+    <Compile Include="Migrations\202103021913180_Initial.designer.cs">
+      <DependentUpon>202103021913180_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,8 +75,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202103012209477_Initial.resx">
-      <DependentUpon>202103012209477_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103021913180_Initial.resx">
+      <DependentUpon>202103021913180_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
