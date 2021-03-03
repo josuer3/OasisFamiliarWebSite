@@ -28,14 +28,7 @@
 
                 </td>
                 <td>
-                    @if (item.Disponible)
-                    {
-                        <button type="button" class="btn btn-success">Disponible</button>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-danger">No Disponible</button>
-                    }
+                    @Html.DisplayFor(modelItem => item.Disponible)
                 </td>
                 
             </tr>
