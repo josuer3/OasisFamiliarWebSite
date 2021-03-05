@@ -58,6 +58,7 @@ namespace OasisFamiliarWebSite.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         public ActionResult Register(RegisterVM model)

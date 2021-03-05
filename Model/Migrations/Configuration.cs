@@ -42,6 +42,28 @@
                 new Mesas() { idMesa = 11, Nombre_Mesa = "Mesa 11", Disponible = 3 }
             );
 
+
+            //Se agrega informacion de las mesas existentes
+            //Seran roles
+            context.Rol.AddOrUpdate(x => x.idRol,
+                new Rol() { idRol = 1, Nombre_Rol = "Cliente", Descripcion = "Cliente" },
+                new Rol() { idRol = 2, Nombre_Rol = "Mesero", Descripcion = "Mesero" },
+                new Rol() { idRol = 3, Nombre_Rol = "Cocinero", Descripcion = "Cocinero" },
+                new Rol() { idRol = 4, Nombre_Rol = "Admin", Descripcion = "Admin" }
+            );
+
+
+
+            //Se agrega informacion de las mesas existentes
+            //Seran 4 usuario --- password = abd12345
+            context.Usuario.AddOrUpdate(x => x.idUsuario,
+                new Usuario() { idUsuario = 1, Nombre_Usuario = "Mesa1", Password = "ABJBix1Jh4p0eRSOu3F3oWW4A1ZWndTAk0l1Q4+zfFCQKMws4ZuzY/uevTiHb61tSA==", idRol =1 },
+                new Usuario() { idUsuario = 2, Nombre_Usuario = "Mesa2", Password = "ABJBix1Jh4p0eRSOu3F3oWW4A1ZWndTAk0l1Q4+zfFCQKMws4ZuzY/uevTiHb61tSA==", idRol = 2 },
+                new Usuario() { idUsuario = 3, Nombre_Usuario = "Mesa3", Password = "ABJBix1Jh4p0eRSOu3F3oWW4A1ZWndTAk0l1Q4+zfFCQKMws4ZuzY/uevTiHb61tSA==", idRol = 3 },
+                new Usuario() { idUsuario = 4, Nombre_Usuario = "Mesa4", Password = "ABJBix1Jh4p0eRSOu3F3oWW4A1ZWndTAk0l1Q4+zfFCQKMws4ZuzY/uevTiHb61tSA==", idRol = 4 },
+                new Usuario() { idUsuario = 5, Nombre_Usuario = "Isa", Password = "ABJBix1Jh4p0eRSOu3F3oWW4A1ZWndTAk0l1Q4+zfFCQKMws4ZuzY/uevTiHb61tSA==", idRol = 4 }
+            );
+
         }
     }
 }

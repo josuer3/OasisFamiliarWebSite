@@ -17,10 +17,9 @@ namespace OasisFamiliarWebSite.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "La Posicion de usuario es requerido")]
+       
         public string Posicion { get; set; }
 
-        public bool premio { get; set; }
         
     }
 }
