@@ -13,14 +13,32 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
+                <h4 class="modal-title">Crear factura</h4>
             </div>
-            <div class="modal-body">
-                <h1>Information</h1>
+
+            <div style="col-md-4 mx-auto">
+                <form method="post" action="@Url.Action("Factura", "Receptionist")">
+
+                    <div class="form-group">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
+                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Nombre:</label>
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Fulanito">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Crear Registro" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+            @*            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
         </div>
     </div>
 </div>
@@ -36,40 +54,66 @@
             <th>
                 Estado
             </th>
+
+            <th>
+                Accion
+            </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
 
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre_Mesa)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Mesa)
 
-                </td>
-                <td>
+            </td>
+            <td>
 
-                    @{ int ejemplo = item.Disponible;}
+                @{ int ejemplo = item.Disponible;}
 
-                   
+                @if (ejemplo == 0)
+                {
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                }
+                if else
+                {
+                <h4>no hay nada</h4>
+                }
+                else
+                {
 
-                    @if (ejemplo == 0)
-                     {
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-                     }
-                    if else
-                    {
-                        <h4>no hay nada</h4>
-                    }
-                    else 
-                    {
-                    
-                    }
+                }
 
-                </td>
+            </td>
 
-            </tr>
+            <td>
+                <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal"
+                        data-id="@Html.DisplayFor(modelItem => item.idMesa)" >Reservar </button>
+            </td>
+
+
+
+        </tr>
         }
     </tbody>
 
 </table>
+
+<!--Codigo para tomar valor de la tabla-->
+
+<script>
+
+        $(document).on( "click", '.edit_button',function(e) {
+            var id = $(this).data('id');
+
+            console.log(id);
+            $(".edit_id").val(id);
+
+
+            $(".modal-title").val("Crear Factura para Mesa" + id);
+        });
+
+
+</script>
