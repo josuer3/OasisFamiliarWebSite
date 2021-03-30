@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginVM.cs" />
+    <Compile Include="Models\MesasVM.cs" />
     <Compile Include="Models\RegisterVM.cs" />
     <Compile Include="Models\SessionCLS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -200,6 +201,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
     <Content Include="Views\Customer\MenuPage.cshtml" />
+    <Content Include="Views\Receptionist\Factura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
