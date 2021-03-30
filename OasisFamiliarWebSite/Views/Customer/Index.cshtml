@@ -5,75 +5,18 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-<h3>Modulo de Cliente (MENU)</h3>
+<h3>Modulo de Cliente (INDEX)</h3>
+<h3>Bienvenido (nombre del cliente</h3>
+
+<h3>Esta usando : Mesa </h3>
+<h3>Cuenta actual: </h3>
 
 
-<hr />
-<h4 style="color:white; align-content:center">Bebidas</h4>
-<hr />
-<div class="container" id="tourpackages-carousel">
+<div>
+    <button>Detalle de cuenta</button>
+    <button>Ordenar</button>
+    <button>Llamar la mesero</button>
+    <button>Pagar</button>
 
-    <div class="row">
+</div>
 
-        @foreach (var item in Model)
-        {
-            <div class="col-xs-18 col-sm-6 col-md-3">
-                <div class="thumbnail" style="background-color:black">
-                    <img src="http://placehold.it/500x300" alt="">
-                    <div class="caption">
-                        <h4>@item.nombre_Producto</h4>
-                        <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                        <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
-                    </div>
-                </div>
-            </div>
-        }
-    
-    </div><!-- End row -->
-
-</div><!-- End container -->
-
-
-<hr />
-<h4>Bocas</h4>
-<hr />
-<div class="container" id="tourpackages-carousel">
-
-    <div class="row">
-
-        <div class="col-xs-18 col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="http://placehold.it/500x300" alt="">
-                <div class="caption">
-                    <h4>Sopa de Tortilla</h4>
-                    <p>Boca</p>
-                    <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-18 col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="http://placehold.it/500x300" alt="">
-                <div class="caption">
-                    <h4>Tortilla frita</h4>
-                    <p>Boca</p>
-                    <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-18 col-sm-6 col-md-3">
-            <div class="thumbnail">
-                <img src="http://placehold.it/500x300" alt="">
-                <div class="caption">
-                    <h4>Balde Golden</h4>
-                    <p>Cerveza Nacional</p>
-                    <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
-                </div>
-            </div>
-        </div>
-
-    </div><!-- End row -->
-
-</div><!-- End container -->

@@ -36,16 +36,13 @@ namespace OasisFamiliarWebSite.Controllers
                     switch (rol)
                     { 
                         case "Cliente":
-                            return RedirectToAction("Register", "Account");
+                            return RedirectToAction("Index", "Customer");
 
                         case "Mesero":
                             return RedirectToAction("Index", "Receptionist");
-                        
-                        //case "Administrador":
-                           //return RedirectToAction("", "")
 
-                       
-
+                        default:
+                            return RedirectToAction("About", "Home");
                     }
 
 
@@ -76,7 +73,7 @@ namespace OasisFamiliarWebSite.Controllers
 
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
         
-            
+        
         
         [HttpPost]
         public JsonResult VerifyIfUserExist(string Nombre_Usuario)

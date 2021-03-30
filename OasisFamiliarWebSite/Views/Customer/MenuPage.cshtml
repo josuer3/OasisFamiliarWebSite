@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Model.DataModel.Menu>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<div style="text-align:center;">
+    <h2 style="color: white; font-weight:bold">ORDENAR AHORA</h2>
+</div>
+
+<div style="float:inherit">
+    <div class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
+        <button type="button" class="btn btn-outline-primary active" data-target="pagado">Todos</button>
+        <button type="button" class="btn btn-outline-primary" data-target="pendiente">Bebidas</button>
+        <button type="button" class="btn btn-success btn-outline" data-target="cancelado">Boca</button>
+        <button type="button" class="btn btn-primary" data-target="all">Platos</button>
+        <button type="button" class="btn btn-success-outline">Success</button>
+    </div>
+</div>
+
+<!--Modal information-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <h1>Information</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<!--Modal information-->
+
+<div class="container" id="tourpackages-carousel">
+
+    <div class="row">
+        @{string title = ""; }
+
+        @foreach (var item in Model)
+        {
+
+            if (title != item.Tipo_Producto)
+            {
+                <hr />
+                <h4 style="color:white; align-content:center">@item.Tipo_Producto</h4>
+                <hr />
+
+                <div class="col-xs-18 col-sm-6 col-md-3">
+                    <div class="thumbnail" style="background-color:black">
+                        <img src="http://placehold.it/500x300" alt="">
+                        <div class="caption">
+                            <h4>@item.nombre_Producto</h4>
+                            <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                            <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="col-xs-18 col-sm-6 col-md-3">
+                    <div class="thumbnail" style="background-color:black">
+                        <img src="http://placehold.it/500x300" alt="">
+                        <div class="caption">
+                            <h4>@item.nombre_Producto</h4>
+                            <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                            <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            title = item.Tipo_Producto;
+
+        }
+
+    </div><!-- End row -->
+
+</div><!-- End container -->
