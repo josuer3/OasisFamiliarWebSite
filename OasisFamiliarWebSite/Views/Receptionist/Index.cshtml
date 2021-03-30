@@ -7,6 +7,26 @@
 
 <h2>Modulo Mesero</h2>
 
+<!--Modal information-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <h1>Information</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal information-->
+
+
 <table class="table table-bordered border border-success">
     <thead>
         <tr>
@@ -28,10 +48,28 @@
 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Disponible)
+
+                    @{ int ejemplo = item.Disponible;}
+
+                   
+
+                    @if (ejemplo == 0)
+                     {
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                     }
+                    if else
+                    {
+                        <h4>no hay nada</h4>
+                    }
+                    else 
+                    {
+                    
+                    }
+
                 </td>
-                
+
             </tr>
         }
     </tbody>
+
 </table>

@@ -39,7 +39,7 @@
                 new Mesas() { idMesa = 8, Nombre_Mesa = "Mesa 8", Disponible = 1 },
                 new Mesas() { idMesa = 9, Nombre_Mesa = "Mesa 9", Disponible = 1 },
                 new Mesas() { idMesa = 10, Nombre_Mesa = "Mesa 10", Disponible = 2 },
-                new Mesas() { idMesa = 11, Nombre_Mesa = "Mesa 11", Disponible = 3 }
+                new Mesas() { idMesa = 11, Nombre_Mesa = "Mesa 11", Disponible = 2 }
             );
 
 

@@ -12,6 +12,7 @@ namespace Model.DataModel
     {
         [Key]
         public int idUsuario { get; set; }
+        [Display(Name = "Usuario")]
         public string Nombre_Usuario { get; set; }
         public string Password { get; set; }
         //public string Posicion { get; set; } 
