@@ -76,6 +76,13 @@ namespace OasisFamiliarWebSite.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult VerFactura()
+        {
+
+            return View("Factura");
+        }
+
         //Este proceso sera boolean --- si funciona enviar true // sino false
         public ActionResult Register(RegisterVM model)
         {
@@ -91,6 +98,8 @@ namespace OasisFamiliarWebSite.Controllers
 
             return RedirectToAction("Login", "Account");
         }
+
+       
 
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
 

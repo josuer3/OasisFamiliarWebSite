@@ -43,6 +43,31 @@
     </div>
 </div>
 <!--Modal information-->
+<!--Modal information-->
+<div id="myModal2" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ver Factura</h4>
+            </div>
+
+            <div style="col-md-4 mx-auto">
+                <form method="post" action="@Url.Action("VerFactura", "Receptionist")">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Ver Factura" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @*            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!--Modal information-->
 
 
 <table class="table table-bordered border border-success">
@@ -50,9 +75,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre_Mesa)
-            </th>
-            <th>
-                Estado
             </th>
 
             <th>
@@ -64,38 +86,34 @@
         @foreach (var item in Model)
         {
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre_Mesa)
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre_Mesa)
 
-            </td>
-            <td>
+                </td>
+                <td>
 
-                @{ int ejemplo = item.Disponible;}
+                    @{ int ejemplo = item.Disponible;}
 
-                @if (ejemplo == 0)
-                {
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-                }
-                if else
-                {
-                <h4>no hay nada</h4>
-                }
-                else
-                {
-
-                }
-
-            </td>
-
-            <td>
-                <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal"
-                        data-id="@Html.DisplayFor(modelItem => item.idMesa)" >Reservar </button>
-            </td>
+                    @if (ejemplo == 0)
+                    {
+                        <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal"
+                                data-id="@Html.DisplayFor(modelItem => item.idMesa)">
+                            Reservar
+                        </button>
+                    }
+                    else if (ejemplo == 1)
+                    {
+                        <button type="button" class="btn btn-danger edit_button" data-toggle="modal" data-target="#myModal2"
+                                data-id="@Html.DisplayFor(modelItem => item.idMesa)">
+                            Mesa Ocupada
+                        </button>
 
 
+                    }
 
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 
@@ -105,15 +123,15 @@
 
 <script>
 
-        $(document).on( "click", '.edit_button',function(e) {
-            var id = $(this).data('id');
+    $(document).on("click", '.edit_button', function (e) {
+        var id = $(this).data('id');
 
-            console.log(id);
-            $(".edit_id").val(id);
+        console.log(id);
+        $(".edit_id").val(id);
 
 
-            $(".modal-title").val("Crear Factura para Mesa" + id);
-        });
+        $(".modal-title").val("Crear Factura para Mesa" + id);
+    });
 
 
 </script>
