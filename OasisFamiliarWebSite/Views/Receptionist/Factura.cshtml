@@ -1,9 +1,71 @@
-﻿
+﻿@model IEnumerable<Model.DataModel.Menu>
 
 @{
     ViewBag.Title = "Factura";
     Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
 }
 
-<h2>Modulo de Factura</h2>
+<h2>Detalles de Factura</h2>
 
+<table class="table table-bordered border border-success">
+    <thead>
+        <tr>
+            <th>
+                ID Factura
+            </th>
+
+            <th>
+                Producto
+            </th>
+            <th>
+                Precio
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Total
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                X
+            </td>
+            <td>
+                X
+            </td>
+            <td>
+                X
+            </td>
+            <td>
+                X
+            </td>
+            <td>
+                X
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Monto Total:
+            </td>
+
+            <td>
+                $
+            </td>
+
+        </tr>
+
+
+    </tbody>
+
+
+</table>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-warning">Agregar</button>
+ 
+    <button type="button" class="btn btn-success">Pagar</button>
+
+</div>
