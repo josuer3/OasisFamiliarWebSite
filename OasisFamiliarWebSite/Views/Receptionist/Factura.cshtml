@@ -1,9 +1,68 @@
-﻿
+﻿@model IEnumerable<Model.DataModel.Menu>
 
 @{
     ViewBag.Title = "Factura";
     Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
 }
 
-<h2>Modulo de Factura</h2>
+<h2>Detalles de Factura</h2>
 
+<table class="table table-bordered border border-success">
+    <thead>
+        <tr style="background-color:#32A9EE;color:white;">
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">ID_Factura:</label>
+                <input type="text" readonly class="form-control edit_id" id="ID Factura" name="ID Factura" placeholder="ID Factura">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Fecha:</label>
+                <input type="text" readonly class="form-control edit_id" id="Fecha" name="Fecha" placeholder="Fecha">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Cliente:</label>
+                <input type="text" readonly class="form-control edit_id" id="Cliente" name="Cliente" placeholder="Cliente">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
+                <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="Mesa">
+            </th>
+
+        </tr>
+        <tr>
+            <td>
+                @* un pequeño espacio para que se vea ordenado *@
+            </td>
+        </tr>
+
+        <tr style="background-color:#ffac00;color:white;">
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Producto:</label>
+                <input type="text" readonly class="form-control edit_id" id="Producto" name="Producto" placeholder="Producto">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Precio:</label>
+                <input type="text" readonly class="form-control edit_id" id="Precio" name="Precio" placeholder="Precio">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Cantidad:</label>
+                <input type="text" readonly class="form-control edit_id" id="Cantidad" name="Cantidad" placeholder="Cantidad">
+            </th>
+            <th>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Total:</label>
+                <input type="text" readonly class="form-control edit_id" id="Total" name="Total" placeholder="Total">
+            </th>
+        </tr>
+    </thead>
+    <tbody> 
+        <th style="background-color:#ff0000;color:white;">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Monto_Total:</label>
+            <input type="text" readonly class="form-control edit_id" id="Monto Total" name="Monto Total" placeholder="Monto Total">
+        </th>
+    </tbody>
+</table>
+<div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-warning">Agregar</button>
+    <button type="button" class="btn bg-primary">Pendiente De Pago</button>
+    <button type="button" class="btn btn-success">Pagar</button>
+
+</div>

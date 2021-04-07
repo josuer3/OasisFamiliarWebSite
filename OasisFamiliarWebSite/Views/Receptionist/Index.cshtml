@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
 }
 
-<h2>Modulo Mesero</h2>
+<h2></h2>
 
 <!--Modal information-->
 <div id="myModal" class="modal fade" role="dialog">
@@ -19,6 +19,9 @@
             <div style="col-md-4 mx-auto">
                 <form method="post" action="@Url.Action("Factura", "Receptionist")">
 
+                    <h1>
+                        @* un pequeño espacio para que se vear ordenado *@
+                     </h1>
                     <div class="form-group">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
                         <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
@@ -26,20 +29,18 @@
 
                     <div class="form-group">
                         <label for="staticEmail" class="col-sm-2 col-form-label">Nombre:</label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Fulanito">
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre Cliente">
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Crear Registro" class="btn btn-default" />
-                        </div>
+                    <div class="modal-footer">
+                            <input type="submit"   text-align="center"  value="Crear Registro" class="btn btn-primary" />
                     </div>
-                </form>
-            </div>
-            @*            <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>*@
+            </form>
         </div>
+        @*            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>*@
+</div>
     </div>
 </div>
 <!--Modal information-->
@@ -49,14 +50,28 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ver Factura</h4>
+                <h4 class="modal-title">Detalles De ordem</h4>
             </div>
 
             <div style="col-md-4 mx-auto">
                 <form method="post" action="@Url.Action("VerFactura", "Receptionist")">
+
+                    <h1>
+                        @* un pequeño espacio para que se vear ordenado *@
+                    </h1>
                     <div class="form-group">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
+                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Total: </label>
+                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Monto Consumido">
+                    </div>
+
+                    <div class="modal-footer">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Ver Factura" class="btn btn-default" />
+                            <input type="submit" value="Ver Detalle" class="btn btn-primary" />
                         </div>
                     </div>
                 </form>
