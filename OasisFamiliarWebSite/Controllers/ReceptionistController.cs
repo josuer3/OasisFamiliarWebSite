@@ -30,8 +30,7 @@ namespace OasisFamiliarWebSite.Controllers
         }
 
         public ActionResult Factura()
-        {
-           
+        {           
             return View();
         }
 
@@ -42,9 +41,7 @@ namespace OasisFamiliarWebSite.Controllers
             //Recibir nombre del cliente y el ID de la Mesa
             int idMesa = Int32.Parse(Mesa);
 
-
             RegisterVM Cliente = new RegisterVM();
-
 
             Cliente.Password = "Mesa "+idMesa;
             Cliente.Nombre_Usuario = Nombre;
@@ -68,12 +65,18 @@ namespace OasisFamiliarWebSite.Controllers
 
             using (var context = new ContextDB())
             {
+                //Tomar valores de la mesa a actualizar
+                var mesaUpdate = context.Mesas.SingleOrDefault(b => b.idMesa == idMesa);
 
+                //Establecer nuevo estao de la mesa
+                mesaUpdate.Disponible = 1;
+
+                //Agregar nueva factura
                 context.Factura.Add(nuevaFactura);
                 context.SaveChanges();
             }
 
-            return View();
+            return RedirectToAction("MenuPage", "Receptionist");
         }
 
         [HttpPost]
@@ -81,6 +84,12 @@ namespace OasisFamiliarWebSite.Controllers
         {
 
             return View("Factura");
+            
+        }
+        public ActionResult VerFacturaPendientes()
+        {
+
+            return View();
         }
 
         //Este proceso sera boolean --- si funciona enviar true // sino false
@@ -98,8 +107,17 @@ namespace OasisFamiliarWebSite.Controllers
 
             return RedirectToAction("Login", "Account");
         }
+        public ActionResult MenuPage()
+        {
+            List<Menu> ListaItem = null;
+            using (var bd = new ContextDB())
+            {
+                ListaItem = bd.Menu.OrderBy(x => x.Tipo_Producto).ToList();
+            }
+            return View(ListaItem);
+        }
 
-       
+
 
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
 
