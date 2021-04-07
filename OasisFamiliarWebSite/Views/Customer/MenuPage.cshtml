@@ -5,55 +5,72 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-<div style="text-align:center;">
-    <h2 style="color: white; font-weight:bold">ORDENAR AHORA</h2>
-</div>
 
-<div style="float:inherit">
-    <div class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
-        <button type="button" class="btn btn-outline-primary active" data-target="pagado">Todos</button>
-        <button type="button" class="btn btn-outline-primary" data-target="pendiente">Bebidas</button>
-        <button type="button" class="btn btn-success btn-outline" data-target="cancelado">Boca</button>
-        <button type="button" class="btn btn-primary" data-target="all">Platos</button>
-        <button type="button" class="btn btn-success-outline">Success</button>
+<div class="contenido">
+    <div style="text-align:center;">
+        <h2 style="color: white; font-weight:bold">ORDENAR AHORA</h2>
     </div>
-</div>
 
-<!--Modal information-->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <h1>Information</h1>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div style="float:inherit">
+        <div class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
+            <button type="button" class="btn btn-outline-primary active" data-target="pagado">Todos</button>
+            <button type="button" class="btn btn-outline-primary" data-target="pendiente">Bebidas</button>
+            <button type="button" class="btn btn-success btn-outline" data-target="cancelado">Boca</button>
+            <button type="button" class="btn btn-primary" data-target="all">Platos</button>
+
+        </div>
+    </div>
+
+    <!--Modal information-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Information</h1>
+                    <div>
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
+                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
+                    </div>
+                    <div>
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Cantidad:</label>
+                        <input type="number" class="form-control" id="paco" name="Mesa" min="1" value="1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-<!--Modal information-->
 
-<div class="container" id="tourpackages-carousel">
+    <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal" data-id="1">test</button>
 
-    <div class="row">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" data-id="1">Open Modal</button>
+    <!--Modal information-->
+    <!-- Contenido del menu -->
+
+    <div class="container">
+
+
         @{string title = ""; }
+        @{string title_prev = ""; }
+
 
         @foreach (var item in Model)
         {
 
-            if (title != item.Tipo_Producto)
+            if (title == "" && title_prev == "")
             {
+                @Html.Raw("<div class='row'>");
+
                 <hr />
                 <h4 style="color:white; align-content:center">@item.Tipo_Producto</h4>
                 <hr />
-
-                <div class="col-xs-18 col-sm-6 col-md-3">
+                <div class="col-xs-18 col-sm-6 col-md-4">
                     <div class="thumbnail" style="background-color:black">
                         <img src="http://placehold.it/500x300" alt="">
                         <div class="caption">
@@ -63,26 +80,93 @@
                         </div>
                     </div>
                 </div>
-
             }
             else
             {
-                <div class="col-xs-18 col-sm-6 col-md-3">
-                    <div class="thumbnail" style="background-color:black">
-                        <img src="http://placehold.it/500x300" alt="">
-                        <div class="caption">
-                            <h4>@item.nombre_Producto</h4>
-                            <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                            <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+
+                if (title == item.Tipo_Producto)
+                {
+
+
+                    <div class="col-xs-18 col-sm-6 col-md-4">
+                        <div class="thumbnail" style="background-color:black">
+                            <img src="http://placehold.it/500x300" alt="">
+                            <div class="caption">
+                                <h4>@item.nombre_Producto</h4>
+                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
 
+                }
+                else
+                {
+                    @Html.Raw("</div>\n<div class='row'>");
+
+                    <hr />
+                    <h4 style="color:white; align-content:center">@item.Tipo_Producto</h4>
+                    <hr />
+                    <div class="col-xs-18 col-sm-6 col-md-4">
+                        <div class="thumbnail" style="background-color:black">
+                            <img src="http://placehold.it/500x300" alt="">
+                            <div class="caption">
+                                <h4>@item.nombre_Producto</h4>
+                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
             title = item.Tipo_Producto;
 
         }
 
-    </div><!-- End row -->
+        @Html.Raw("</div>")  <!-- End row -->
 
-</div><!-- End container -->
+    </div><!-- End container -->
+    <!-- Fin del Contenido del menu -->
+
+</div>
+
+<div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: slategray; height: 10px;">
+    <div class="container">
+        <div class="navbar-header" style="text-align: center">
+            <h4 style="color:white;" class="entry-title">Factura : XC0001</h4>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li style="color:white">@Html.ActionLink("Ver detalle", "Index", "Customer")</li>
+                <li style="color:white">@Html.ActionLink("Pagar", "MenuPage", "Customer")</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Codigo para tomar valor de la tabla-->
+
+<script>
+
+    $(document).on("click", '.edit_button', function (e) {
+
+
+        var h1Text = document.querySelector(".entry-title").textContent;
+        console.log(h1Text);
+
+
+
+
+        var id = $(this).data('id');
+
+        console.log(id);
+        $(".edit_id").val(h1Text);
+
+
+        $(".modal-title").val("Crear Factura para Mesa" + id);
+    });
+
+
+</script>
