@@ -29,8 +29,23 @@ namespace OasisFamiliarWebSite.Controllers
             return View(ListaMesas);
         }
 
+
+        //Get temporal
         public ActionResult Factura()
-        {           
+        {
+            //usar factura #10
+            int factura = 10;
+            
+
+            using (var bd = new ContextDB())
+            {
+                var datosMesa = bd.Factura.First(a => a.idFactura == factura);
+
+
+            }
+
+            
+
             return View();
         }
 

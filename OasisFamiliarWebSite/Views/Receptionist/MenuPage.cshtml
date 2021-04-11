@@ -13,65 +13,98 @@
     </div>
 
 
-
     <div style="float:inherit">
         <div id="myBtnContainer" class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
-            <button class="btn active" onclick="filterSelection('all')"> Todos</button>
-            <button class="btn" onclick="filterSelection('Bebida')"> Bebidas</button>
-            <button class="btn" onclick="filterSelection('Boca')"> Boca</button>
-            <button class="btn" onclick="filterSelection('Comida')"> Platos</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('all')"> Todos</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Bebida')"> Bebidas</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Boca')"> Boca</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Comida')"> Platos</button>
         </div>
     </div>
 
-        <!--Modal information-->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Modal Header</h4>
+    <!--Modal information-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Establecer detalle en Orden</h4>
+                </div>
+                <div class="modal-body">
+
+
+
+                    <table style="width:100%">
+                        <tr>
+                            <th> <p>Panes con Pollo</p></th>
+                            <th> <p>Precio : $5.00</p></th>
+                        
+                        </tr>
+                        <tr>
+                            <td><p>Cantidad:</p></td>
+                            <td><input type="number" class="form-control" id="paco" name="Mesa" min="1" max="5" value="1"></td>
+                            
+                        </tr>
+
+                    </table>
+
+
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
+                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
                     </div>
-                    <div class="modal-body">
-                        <h1>Information</h1>
-                        <div>
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
-                            <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
-                        </div>
-                        <div>
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Cantidad:</label>
-                            <input type="number" class="form-control" id="paco" name="Mesa" min="1" value="1">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-
-  
-
-        <!--Modal information-->
-        <!-- Contenido del menu -->
-
-        <div class="container">
+    </div>
 
 
-            @{string title = ""; }
-            @{string title_prev = ""; }
+
+    <!--Modal information-->
+    <!-- Contenido del menu -->
+
+    <div class="container">
 
 
-            @foreach (var item in Model)
+        @{string title = ""; }
+        @{string title_prev = ""; }
+
+
+        @foreach (var item in Model)
+        {
+
+            if (title == "" && title_prev == "")
+            {
+                @Html.Raw("<div class='row'>");
+
+                <div class="filterDiv @item.Tipo_Producto">
+                    <hr />
+                    <h4 style="align-content:center">@item.Tipo_Producto</h4>
+                    <hr />
+                    <div class="col-xs-18 col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/500x300" alt="">
+                            <div class="caption">
+                                <h4>@item.nombre_Producto</h4>
+                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            else
             {
 
-                if (title == "" && title_prev == "")
+                if (title == item.Tipo_Producto)
                 {
-                    @Html.Raw("<div class='row'>");
 
                     <div class="filterDiv @item.Tipo_Producto">
-                        <hr />
-                        <h4 style="align-content:center">@item.Tipo_Producto</h4>
-                        <hr />
                         <div class="col-xs-18 col-sm-6 col-md-4">
                             <div class="thumbnail">
                                 <img src="http://placehold.it/500x300" alt="">
@@ -87,54 +120,34 @@
                 }
                 else
                 {
-
-                    if (title == item.Tipo_Producto)
-                    {
-
-                        <div class="filterDiv @item.Tipo_Producto">
-                            <div class="col-xs-18 col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/500x300" alt="">
-                                    <div class="caption">
-                                        <h4>@item.nombre_Producto</h4>
-                                        <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                        <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
-                                    </div>
+                    @Html.Raw("</div>\n<div class='row'>");
+                    <div class="filterDiv @item.Tipo_Producto">
+                        <hr />
+                        <h4 style="align-content:center">@item.Tipo_Producto</h4>
+                        <hr />
+                        <div class="col-xs-18 col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/500x300" alt="">
+                                <div class="caption">
+                                    <h4>@item.nombre_Producto</h4>
+                                    <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
                                 </div>
                             </div>
                         </div>
-
-                    }
-                    else
-                    {
-                        @Html.Raw("</div>\n<div class='row'>");
-                        <div class="filterDiv @item.Tipo_Producto">
-                            <hr />
-                            <h4 style="align-content:center">@item.Tipo_Producto</h4>
-                            <hr />
-                            <div class="col-xs-18 col-sm-6 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/500x300" alt="">
-                                    <div class="caption">
-                                        <h4>@item.nombre_Producto</h4>
-                                        <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                        <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+                    </div>
                 }
-                title = item.Tipo_Producto;
-
             }
+            title = item.Tipo_Producto;
 
-            @Html.Raw("</div>")  <!-- End row -->
+        }
 
-        </div><!-- End container -->
-        <!-- Fin del Contenido del menu -->
+        @Html.Raw("</div>")  <!-- End row -->
 
-    </div>
+    </div><!-- End container -->
+    <!-- Fin del Contenido del menu -->
+
+</div>
 
     <div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: slategray; height: 10px;">
         <div class="container">
