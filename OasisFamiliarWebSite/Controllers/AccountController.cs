@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using OasisFamiliarWebSite.Models;
 using Model.DataModel;
 using OasisFamiliarWebSite.Servics.Call;
+using System.Web.Security;
 
 namespace OasisFamiliarWebSite.Controllers
 {
@@ -13,7 +14,9 @@ namespace OasisFamiliarWebSite.Controllers
     public class AccountController : Controller
     {
         UsersServices _manejoUserServices = new UsersServices();
-        
+
+
+        SessionCLS sessiom = new SessionCLS();
 
         // GET: Account
         public ActionResult Login()
@@ -82,7 +85,13 @@ namespace OasisFamiliarWebSite.Controllers
                 bool Exito = _manejoUserServices.ValidandoNombreDeUsuario(Nombre_Usuario);
                 return Json(Exito);
          }
-        
-        
+
+        public ActionResult Salir()
+        {
+            //  FormsAuthentication.SignOut();
+            sessiom.logout();
+            return this.RedirectToAction("Login");
+        }
+
     }
 }

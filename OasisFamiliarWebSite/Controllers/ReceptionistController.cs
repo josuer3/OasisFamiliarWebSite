@@ -106,6 +106,16 @@ namespace OasisFamiliarWebSite.Controllers
 
             return View();
         }
+        public ActionResult Historial()
+        {
+
+            return View();
+        }
+        public ActionResult CerrarSession()
+        {
+
+            return View();
+        }
 
         //Este proceso sera boolean --- si funciona enviar true // sino false
         public ActionResult Register(RegisterVM model)

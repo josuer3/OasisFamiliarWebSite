@@ -3,6 +3,7 @@ using Model.DataModel;
 using OasisFamiliarWebSite.Models;
 using Microsoft.AspNet.Identity;
 using OasisFamiliarServices.Services;
+using System.Web.Security;
 
 namespace OasisFamiliarWebSite.Servics.Call
 {
@@ -19,6 +20,7 @@ namespace OasisFamiliarWebSite.Servics.Call
 
             if (ValidacionPassword(user.idUsuario, model.Password))
             {
+            //    FormsAuthentication.SetAuthCookie(user.Nombre_Usuario, false);
                 sessiom.setSession(user.Nombre_Usuario, user);
                 return  true;
             }

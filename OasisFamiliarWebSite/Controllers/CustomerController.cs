@@ -9,9 +9,12 @@ using Model.DataModel;
 namespace OasisFamiliarWebSite.Controllers
 {
     
+
     public class CustomerController : Controller
     {
         // GET: Customer
+
+        
         public ActionResult Index()
         {
             //Display customer information

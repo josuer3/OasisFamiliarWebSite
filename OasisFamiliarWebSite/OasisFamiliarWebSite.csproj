@@ -204,6 +204,8 @@
     <Content Include="Views\Receptionist\Factura.cshtml" />
     <Content Include="Views\Receptionist\VerFacturaPendientes.cshtml" />
     <Content Include="Views\Receptionist\MenuPage.cshtml" />
+    <Content Include="Views\Receptionist\Historial.cshtml" />
+    <Content Include="Views\Receptionist\CerrarSession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
