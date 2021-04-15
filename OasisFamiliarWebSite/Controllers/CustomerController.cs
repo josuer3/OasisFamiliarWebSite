@@ -23,12 +23,22 @@ namespace OasisFamiliarWebSite.Controllers
             //Customer name
             //
 
+            var usuario = Session["Data"];
+            Usuario logueado = (Usuario)usuario;
+            
+            string user = Session["Usuario"].ToString();
+            string rol = Session["Rol"].ToString();
+
+
             return View();
         }
 
         public ActionResult MenuPage()
         {
             List<Menu> ListaItem = null;
+
+
+
             using (var bd = new ContextDB())
             {
                 ListaItem = bd.Menu.OrderBy(x => x.Tipo_Producto).ToList();

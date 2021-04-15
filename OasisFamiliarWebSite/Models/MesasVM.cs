@@ -14,6 +14,8 @@ namespace OasisFamiliarWebSite.Models
         [Display(Name = "Mesas")]
         public string Nombre_Mesa { get; set; }
         public int Disponible { get; set; }
-        public string Nombre_Cliente { get; set; }
+        public int NumeroFactura { get; set; }
+        public string TotalFactura { get; set; }
+
     }
 }

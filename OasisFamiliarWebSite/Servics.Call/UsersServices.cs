@@ -21,7 +21,7 @@ namespace OasisFamiliarWebSite.Servics.Call
             if (ValidacionPassword(user.idUsuario, model.Password))
             {
             //    FormsAuthentication.SetAuthCookie(user.Nombre_Usuario, false);
-                sessiom.setSession(user.Nombre_Usuario, user);
+                sessiom.setSession(user.Nombre_Usuario,user.Role.Nombre_Rol, user);
                 return  true;
             }
 

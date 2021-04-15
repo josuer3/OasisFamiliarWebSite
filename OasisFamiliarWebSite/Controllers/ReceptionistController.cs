@@ -22,10 +22,45 @@ namespace OasisFamiliarWebSite.Controllers
         public ActionResult Index()
         {
             List<Mesas> ListaMesas = null;
+
+            List<MesasVM> ListadoMesas = null;
+
+
             using (var bd = new ContextDB())
             {
+                var data = bd.Mesas.ToList();
+
                 ListaMesas = bd.Mesas.ToList();
+
              }
+
+            /*
+            foreach (var data in ListaMesas)
+            {
+                ListadoMesas.Add(new MesasVM()
+                {
+                    idMesa = data.idMesa,
+                    NumeroFactura = 0,
+                });
+            }
+
+
+            for (int i = 0; i < ListadoMesas.Count; i++) {
+
+                if (ListaMesas[i].Disponible == 1)
+                {
+                    //Hacer configuracion de obtener datos 
+                    
+                    using (var context = new ContextDB())
+                    {
+                        //var factura = context.Fac.SingleOrDefault(b => b.idMesa == idMesa);
+                        var cliente = context.Factura.OrderByDescending(x => x.idMesa).Where(y=>y.idMesa==ListadoMesas[i].idMesa).FirstOrDefault();
+                        //dato quemado es 10
+                        ListadoMesas[i].NumeroFactura = 10;
+                    }
+                }              
+            }*/
+
             return View(ListaMesas);
         }
 
@@ -36,7 +71,6 @@ namespace OasisFamiliarWebSite.Controllers
             //usar factura #10
             int factura = 10;
             
-
             using (var bd = new ContextDB())
             {
                 var datosMesa = bd.Factura.First(a => a.idFactura == factura);
@@ -72,10 +106,26 @@ namespace OasisFamiliarWebSite.Controllers
             //Encontrar el ultimo del usuario actual (usaremos como demo el 1)-- Mesero que utiliza el programa UsuarioLogueado.IdUsuario
             //Usar el ID de la mesa.
 
+            /*Datos del vendedor*/
+            var usuario = Session["Data"];
+            Usuario logueado = (Usuario)usuario;
+
+            Usuario cliente = new Usuario();
+           
+
+            /*Datos del cliente recien creado*/
+            using (var context = new ContextDB()) 
+            {
+                cliente = context.Usuario.OrderByDescending(x => x.idUsuario).FirstOrDefault();
+            }
+
+
+
+
             nuevaFactura.idMesa = idMesa;
             nuevaFactura.Fecha = time;
-            nuevaFactura.idCliente = 6;
-            nuevaFactura.idVendedor = 1;
+            nuevaFactura.idCliente = cliente.idUsuario ;
+            nuevaFactura.idVendedor = logueado.idUsuario;
 
 
             using (var context = new ContextDB())
@@ -91,7 +141,17 @@ namespace OasisFamiliarWebSite.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction("MenuPage", "Receptionist");
+
+            Factura factura = new Factura();
+
+            /*Datos de la Factura recien creado*/
+            using (var context = new ContextDB())
+            {
+                factura = context.Factura.OrderByDescending(x => x.idFactura).FirstOrDefault();
+            }
+
+
+            return RedirectToAction("MenuPage", "Receptionist", factura);
         }
 
         [HttpPost]
@@ -132,8 +192,12 @@ namespace OasisFamiliarWebSite.Controllers
 
             return RedirectToAction("Login", "Account");
         }
-        public ActionResult MenuPage()
+        public ActionResult MenuPage(Factura item)
         {
+
+            ViewBag.Message = item.idFactura;
+
+
             List<Menu> ListaItem = null;
             using (var bd = new ContextDB())
             {
