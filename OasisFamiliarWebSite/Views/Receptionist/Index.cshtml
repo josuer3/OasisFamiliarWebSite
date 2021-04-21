@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Model.DataModel.Mesas>
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.MesasVM>
 
 @{
     ViewBag.Title = "Index";
@@ -66,8 +66,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Total: </label>
-                        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Monto Consumido">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">Factura: </label>
+                        <input type="text" class="form-control factura_id" id="Factura" name="Factura" placeholder="X0001">
                     </div>
 
                     <div class="modal-footer">
@@ -121,7 +121,7 @@
                     else if (ejemplo == 1)
                     {
                         <button type="button" class="btn btn-danger edit_button" data-toggle="modal" data-target="#myModal2"
-                                data-id="@Html.DisplayFor(modelItem => item.idMesa)">
+                                data-id="@Html.DisplayFor(modelItem => item.idMesa)" data-factura="@Html.DisplayFor(modelItem => item.NumeroFactura)">
                             Mesa Ocupada
                         </button>
 
@@ -141,9 +141,12 @@
 
     $(document).on("click", '.edit_button', function (e) {
         var id = $(this).data('id');
+        var fac = $(this).data('factura');
 
         console.log(id);
         $(".edit_id").val(id);
+        console.log(fac);
+        $(".factura_id").val(fac);
 
 
         $(".modal-title").val("Crear Factura para Mesa" + id);

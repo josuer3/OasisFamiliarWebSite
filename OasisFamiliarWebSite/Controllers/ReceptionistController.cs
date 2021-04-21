@@ -19,49 +19,54 @@ namespace OasisFamiliarWebSite.Controllers
 
 
         // GET: Receptionist
+
+        // crear un nuevo modelo llamado detallesvm foreach ejemplo linea 40 - nvestigar que info tengo que meter ahi 
         public ActionResult Index()
         {
             List<Mesas> ListaMesas = null;
 
-            List<MesasVM> ListadoMesas = null;
+            List<MesasVM> ListadoMesas = new List<MesasVM>();
 
 
             using (var bd = new ContextDB())
             {
                 var data = bd.Mesas.ToList();
-
                 ListaMesas = bd.Mesas.ToList();
 
-             }
+            }
 
-            /*
+
             foreach (var data in ListaMesas)
             {
                 ListadoMesas.Add(new MesasVM()
                 {
                     idMesa = data.idMesa,
+                    Nombre_Mesa = data.Nombre_Mesa,
+                    Disponible = data.Disponible,
                     NumeroFactura = 0,
+                    TotalFactura = null,
                 });
             }
 
 
             for (int i = 0; i < ListadoMesas.Count; i++) {
-
                 if (ListaMesas[i].Disponible == 1)
                 {
                     //Hacer configuracion de obtener datos 
-                    
                     using (var context = new ContextDB())
                     {
                         //var factura = context.Fac.SingleOrDefault(b => b.idMesa == idMesa);
-                        var cliente = context.Factura.OrderByDescending(x => x.idMesa).Where(y=>y.idMesa==ListadoMesas[i].idMesa).FirstOrDefault();
+                        var cliente = context.Factura.OrderByDescending(x => x.idMesa).ToList();
                         //dato quemado es 10
-                        ListadoMesas[i].NumeroFactura = 10;
+                        var detalle = (from s in cliente
+                                       where s.idMesa == ListadoMesas[i].idMesa
+                                       select s).LastOrDefault<Factura>();
+                        ListadoMesas[i].NumeroFactura = detalle.idFactura;
                     }
-                }              
-            }*/
+                }
+            }
 
-            return View(ListaMesas);
+            return View(ListadoMesas);
         }
 
 
@@ -70,7 +75,7 @@ namespace OasisFamiliarWebSite.Controllers
         {
             //usar factura #10
             int factura = 10;
-            
+
             using (var bd = new ContextDB())
             {
                 var datosMesa = bd.Factura.First(a => a.idFactura == factura);
@@ -78,21 +83,21 @@ namespace OasisFamiliarWebSite.Controllers
 
             }
 
-            
+
 
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult Factura(string Mesa,string Nombre)
+        public ActionResult Factura(string Mesa, string Nombre)
         {
             //Recibir nombre del cliente y el ID de la Mesa
             int idMesa = Int32.Parse(Mesa);
 
             RegisterVM Cliente = new RegisterVM();
 
-            Cliente.Password = "Mesa "+idMesa;
+            Cliente.Password = "Mesa " + idMesa;
             Cliente.Nombre_Usuario = Nombre;
 
             //Se crea nuevo cliente
@@ -111,22 +116,19 @@ namespace OasisFamiliarWebSite.Controllers
             Usuario logueado = (Usuario)usuario;
 
             Usuario cliente = new Usuario();
-           
+
 
             /*Datos del cliente recien creado*/
-            using (var context = new ContextDB()) 
+            using (var context = new ContextDB())
             {
                 cliente = context.Usuario.OrderByDescending(x => x.idUsuario).FirstOrDefault();
             }
 
 
-
-
             nuevaFactura.idMesa = idMesa;
             nuevaFactura.Fecha = time;
-            nuevaFactura.idCliente = cliente.idUsuario ;
+            nuevaFactura.idCliente = cliente.idUsuario;
             nuevaFactura.idVendedor = logueado.idUsuario;
-
 
             using (var context = new ContextDB())
             {
@@ -155,11 +157,56 @@ namespace OasisFamiliarWebSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult VerFactura()
+        public ActionResult VerFactura(string mesa, string factura)
         {
+            int fact = 0;
+            Int32.TryParse(factura, out fact);
+            List<Comprado> detalle = null;
 
-            return View("Factura");
-            
+            using (var bd = new ContextDB())
+            {
+                var data = bd.Comprado.Where(x => x.idFactura == fact).ToList();
+                detalle = data.ToList();
+            }
+
+
+            List<DetalleFactura> detalleOrden = new List<DetalleFactura>();
+
+
+            foreach (var data in detalle)
+            {
+                detalleOrden.Add(new DetalleFactura()
+                {
+                    idComprado = data.idComprado,
+                    idFactura = data.idFactura,
+                    idMenu = data.idMenu,
+                    Cantidad = data.Cantidad,
+                    productoNombre = "",
+                    precio = 0
+                });
+            }
+
+
+            for (int i = 0; i < detalleOrden.Count; i++)
+            {
+                int menu = detalleOrden[i].idMenu;
+
+                    //Hacer configuracion de obtener datos 
+                using (var context = new ContextDB())
+                    {
+                    
+                    //var factura = context.Fac.SingleOrDefault(b => b.idMesa == idMesa);
+                    var producto = context.Menu.SingleOrDefault(x => x.idMenu == menu);
+                    //dato quemado es 10
+                    detalleOrden[i].productoNombre = producto.nombre_Producto;
+                    detalleOrden[i].precio = producto.Precio;
+                }
+
+            }
+
+
+            return View(detalleOrden);
+
         }
         public ActionResult VerFacturaPendientes()
         {
@@ -171,6 +218,8 @@ namespace OasisFamiliarWebSite.Controllers
 
             return View();
         }
+
+
         public ActionResult CerrarSession()
         {
 
@@ -192,22 +241,42 @@ namespace OasisFamiliarWebSite.Controllers
 
             return RedirectToAction("Login", "Account");
         }
+
+
         public ActionResult MenuPage(Factura item)
         {
 
             ViewBag.Message = item.idFactura;
-
-
             List<Menu> ListaItem = null;
-            using (var bd = new ContextDB())
-            {
-                ListaItem = bd.Menu.OrderBy(x => x.Tipo_Producto).ToList();
-            }
+
+            ListaItem = GetMenu(ListaItem);
+
             return View(ListaItem);
         }
 
+        [HttpPost]
+        public ActionResult MenuPage(int Mesa, int Id_Menu, int Cantidad)
+        {
+            Comprado orden = new Comprado();
+            orden.Cantidad = Cantidad;
+            orden.idFactura = 21;
+            orden.idMenu = Id_Menu;
+
+            using (var context = new ContextDB())
+            {
+
+                context.Comprado.Add(orden);
+                context.SaveChanges();
+            }
 
 
+            ViewBag.Message = Mesa;
+            List<Menu> Listado = null;
+
+            Listado = GetMenu(Listado);
+
+            return View(Listado);
+        }
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
 
 
@@ -219,7 +288,16 @@ namespace OasisFamiliarWebSite.Controllers
             return Json(Exito);
         }
 
+        public List<Menu> GetMenu(List<Menu> listado) {
 
+
+            using (var bd = new ContextDB())
+            {
+                listado = bd.Menu.OrderBy(x => x.Tipo_Producto).ToList();
+            }
+
+            return listado;
+        }
 
     }
 }

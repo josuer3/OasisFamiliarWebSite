@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.DetalleFactura>
+
+@{
+    ViewBag.Title = "Factura";
+    Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
+}
+
+<h2 style="text-align:center;">Factura: XXX1010</h2>
+
+
+<table class="table table-bordered border border-success ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total </th>
+            <th scope="col">
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 1;}}
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.productoNombre</td>
+                <td>@item.precio</td>
+                <td>@item.Cantidad</td>
+                <td>Total???</td>
+            </tr>            
+        }
+        </tbody>
+</table>
+
+<div class="btn-group" contextmenu="center">
+    <button type="button" class="btn btn-success " data-target="pagado">Pagar</button>
+    <button type="button" class="btn btn-danger " data-target="cancelado">Cancelar Factura</button>
+    <button type="button" class="btn btn-warning" data-target="all">Pago Pendiente</button>
+</div>
+
+
+
+
+
+
+

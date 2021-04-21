@@ -143,6 +143,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetalleFactura.cs" />
+    <Compile Include="Models\DetallesVM.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\MesasVM.cs" />
     <Compile Include="Models\RegisterVM.cs" />
@@ -206,6 +208,7 @@
     <Content Include="Views\Receptionist\MenuPage.cshtml" />
     <Content Include="Views\Receptionist\Historial.cshtml" />
     <Content Include="Views\Receptionist\CerrarSession.cshtml" />
+    <Content Include="Views\Receptionist\VerFactura.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

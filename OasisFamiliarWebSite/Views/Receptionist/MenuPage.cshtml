@@ -26,43 +26,39 @@
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Establecer detalle en Orden</h4>
-                </div>
-                <div class="modal-body">
-cl
-
-
-                    <table style="width:100%">
-                        <tr>
-                            <th> <p>Panes con Pollo</p></th>
-                            <th> <p>Precio : $5.00</p></th>
-                        
-                        </tr>
-                        <tr>
-                            <td><p>Cantidad:</p></td>
-                            <td><input type="number" class="form-control" id="paco" name="Mesa" min="1" max="5" value="1"></td>
-                            
-                        </tr>
-
-                    </table>
-
-
-                </div>
-                <div class="modal-footer">
-                    <div>
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
-                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
+                <form method="post" action="@Url.Action("MenuPage", "Receptionist")">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Establecer detalle en Orden</h4>
                     </div>
+                    <div class="modal-body">
 
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                        <table style="width:100%">
+                            <tr>
+                                <th> <p id="edit_nombre"></p></th>
+                                <th> <p>Precio : $ <span id="edit_precio"></span></p></th>
+                            </tr>
+                            <tr>
+                                <td><p>Cantidad:</p></td>
+                                <td><input type="number" class="form-control" id="Cantidad" name="Cantidad" min="1" max="5" value="1"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            
+                            <input type="hidden" id="Id_Menu" name="Id_Menu" class="edit_id">
+                            <input type="hidden" id="Mesa" name="Mesa" class="edit_idFactura">
+                        </div>
+
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" value="Agregar" class="btn btn-success" />
+                        
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
 
     <!--Modal information-->
     <!-- Contenido del menu -->
@@ -91,7 +87,7 @@ cl
                             <div class="caption">
                                 <h4>@item.nombre_Producto</h4>
                                 <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
+                                <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
                             </div>
                         </div>
                     </div>
@@ -111,7 +107,7 @@ cl
                                 <div class="caption">
                                     <h4>@item.nombre_Producto</h4>
                                     <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
+                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +127,7 @@ cl
                                 <div class="caption">
                                     <h4>@item.nombre_Producto</h4>
                                     <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="1">Ordenar</a></p>
+                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +148,7 @@ cl
     <div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: slategray; height: 10px;">
         <div class="container">
             <div class="navbar-header" style="text-align: center">
-                <h4 style="color:white;" class="entry-title">Factura : @ViewBag.Message</h4>
+                <h4 style="color:white;" >Factura : <span class="entry-title">@ViewBag.Message</span></h4>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -163,25 +159,26 @@ cl
             </div>
         </div>
     </div>
-
-
     <!--Codigo para tomar valor de la tabla-->
-
     <script>
-
         $(document).on("click", '.edit_button', function (e) {
-
-
-            var h1Text = document.querySelector(".entry-title").textContent;
-            console.log(h1Text);
-
-
-
-
+            var h1Text = document.querySelector(".entry-title").textContent;        
             var id = $(this).data('id');
+            var precio = $(this).data('precio');
+            var nombre = $(this).data('nombre');
 
             console.log(id);
-            $(".edit_id").val(h1Text);
+            console.log(precio);
+            console.log(nombre);
+
+
+            document.getElementById("edit_nombre").innerHTML = nombre;
+            document.getElementById("edit_precio").innerHTML = precio;
+
+            console.log(h1Text);
+
+            $(".edit_idFactura").val(h1Text);
+            $(".edit_id").val(id);
 
 
             $(".modal-title").val("Crear Factura para Mesa" + id);
