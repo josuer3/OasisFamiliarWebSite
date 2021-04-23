@@ -17,5 +17,7 @@ namespace OasisFamiliarWebSite.Models
         public string productoNombre { get; set; }
         public double precio { get; set; }
 
+        public double total { get; set; }
+
     }
 }

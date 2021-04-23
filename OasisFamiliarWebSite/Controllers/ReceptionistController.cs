@@ -166,8 +166,14 @@ namespace OasisFamiliarWebSite.Controllers
             using (var bd = new ContextDB())
             {
                 var data = bd.Comprado.Where(x => x.idFactura == fact).ToList();
+                var facturaDetalle = bd.Factura.SingleOrDefault(x => x.idFactura == fact);
+
+                ViewBag.Message = facturaDetalle.Fecha.ToString();
+                ViewBag.Data = facturaDetalle;
                 detalle = data.ToList();
             }
+
+            
 
 
             List<DetalleFactura> detalleOrden = new List<DetalleFactura>();
@@ -200,6 +206,7 @@ namespace OasisFamiliarWebSite.Controllers
                     //dato quemado es 10
                     detalleOrden[i].productoNombre = producto.nombre_Producto;
                     detalleOrden[i].precio = producto.Precio;
+                    detalleOrden[i].total = detalleOrden[i].precio * detalleOrden[i].Cantidad;
                 }
 
             }
