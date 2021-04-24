@@ -44,10 +44,10 @@ namespace OasisFamiliarWebSite.Controllers
         }
 
 
-        public ActionResult MenuPage(string item)
+        public ActionResult MenuPage(int item)
         {
 
-            ViewBag.Message = cliente.FacturaActual;
+            ViewBag.Message = item;
             List<Menu> ListaItem = null;
             ListaItem = datosOrden.GetMenu();
 

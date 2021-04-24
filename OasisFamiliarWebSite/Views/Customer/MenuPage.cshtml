@@ -5,13 +5,11 @@
     Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
 }
 
-
-
 <div class="contenido">
     <div style="text-align:center;">
-        <h2 style="color: white; font-weight:bold">ORDENAR AHORA</h2>
+        <h2 style="font-weight:bold">ORDENAR AHORA</h2>
+        <p>Factura #: @ViewBag.Message</p>
     </div>
-
 
     <div style="float:inherit">
         <div id="myBtnContainer" class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
@@ -145,20 +143,6 @@
 
 </div>
 
-<div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: slategray; height: 10px;">
-    <div class="container">
-        <div class="navbar-header" style="text-align: center">
-            <h4 style="color:white;">Factura : <span class="entry-title">@ViewBag.Message</span></h4>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li style="color:white">@Html.ActionLink("Ver detalle", "Index", "Customer")</li>
-                <li style="color:white">@Html.ActionLink("Pagar", "MenuPage", "Customer")</li>
-            </ul>
-
-        </div>
-    </div>
-</div>
 <!--Codigo para tomar valor de la tabla-->
 <script>
     $(document).on("click", '.edit_button', function (e) {
@@ -186,8 +170,6 @@
 
 
 </script>
-
-
 <script>
     filterSelection("all")
     function filterSelection(c) {
