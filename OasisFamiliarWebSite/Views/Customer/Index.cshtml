@@ -34,7 +34,7 @@
     <div class="btn-group-vertical center">
 
             <button type="button" class="btn btn-primary btn-outline" > Revisar facturar</button>
-            <button type="button" class="btn btn-primary btn-outline" onclick="location.href='@Url.Action("MenuPage", "Customer")'">Ordenar</button>
+            <button type="button" class="btn btn-primary btn-outline" onclick="location.href='@Url.Action("MenuPage", "Customer", new { item = ViewBag.Data.FacturaActual})'">Ordenar</button>
             <button type="button" class="btn btn-primary btn-outline">Llamar la mesero</button>
             <button type="button" class="btn btn-danger btn-outline" >Pagar</button>
 
