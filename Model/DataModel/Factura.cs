@@ -16,5 +16,6 @@ namespace Model.DataModel
         public int idVendedor { get; set; }
         public int idMesa { get; set; }
 
+
     }
 }
