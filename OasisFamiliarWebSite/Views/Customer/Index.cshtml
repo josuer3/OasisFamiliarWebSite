@@ -1,4 +1,4 @@
-﻿ @model IEnumerable<Model.DataModel.Menu>
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.CustomerVM>
 
 @{
 
@@ -6,18 +6,38 @@
 }
 
 
-<h3>Modulo de Cliente @HttpContext.Current.Session["Usuario"].ToString()</h3>
-<h3>Bienvenido (nombre del cliente)</h3>
 
-<h3>Esta usando : Mesa </h3>
-<h3>Cuenta actual: </h3>
+<h2 style="text-align:center;">Bienvenido al Oasis Familiar</h2>
+@*<h3 style="text-align:center;">@HttpContext.Current.Session["Usuario"].ToString()</h3>*@
 
+<h3 style="text-align:center;">@ViewBag.Data.Nombre_Usuario</h3>
 
-<div>
-    <button>Detalle de cuenta</button>
-    <button>Ordenar</button>
-    <button>Llamar la mesero</button>
-    <button>Pagar</button>
+<div style="text-align:center">
 
+    @{
+        if (ViewBag.Data.EstadoCuenta == 0)
+        {
+            <p>No tiene cuenta abierta</p>
+            <button>Iniciar Orden</button>
+        }
+        else
+        {
+            <p>Detalle de su cuenta:</p>
+            <p>Factura #: @ViewBag.Data.FacturaActual</p>
+            <p>Total actual: @ViewBag.Data.MontoActual</p>
+        }
+    }
+
+</div>
+
+<div class="opciones">
+    <div class="btn-group-vertical center">
+
+            <button type="button" class="btn btn-primary btn-outline" > Revisar facturar</button>
+            <button type="button" class="btn btn-primary btn-outline" onclick="location.href='@Url.Action("MenuPage", "Customer")'">Ordenar</button>
+            <button type="button" class="btn btn-primary btn-outline">Llamar la mesero</button>
+            <button type="button" class="btn btn-danger btn-outline" >Pagar</button>
+
+    </div>
 </div>
 
