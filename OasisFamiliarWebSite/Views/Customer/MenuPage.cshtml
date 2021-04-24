@@ -6,18 +6,19 @@
 }
 
 
+
 <div class="contenido">
     <div style="text-align:center;">
         <h2 style="color: white; font-weight:bold">ORDENAR AHORA</h2>
     </div>
 
-    <div style="float:inherit">
-        <div class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
-            <button type="button" class="btn btn-outline-primary active" data-target="pagado">Todos</button>
-            <button type="button" class="btn btn-outline-primary" data-target="pendiente">Bebidas</button>
-            <button type="button" class="btn btn-success btn-outline" data-target="cancelado">Boca</button>
-            <button type="button" class="btn btn-primary" data-target="all">Platos</button>
 
+    <div style="float:inherit">
+        <div id="myBtnContainer" class="btn-group" style="margin: auto; display: flex; flex-direction: row; justify-content: center;">
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('all')"> Todos</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Bebida')"> Bebidas</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Boca')"> Boca</button>
+            <button class="btn btn-primary btn-outline" onclick="filterSelection('Comida')"> Platos</button>
         </div>
     </div>
 
@@ -25,31 +26,40 @@
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <h1>Information</h1>
-                    <div>
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Mesa:</label>
-                        <input type="text" readonly class="form-control edit_id" id="Mesa" name="Mesa" placeholder="#">
+                <form method="post" action="@Url.Action("MenuPage", "Receptionist")">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Establecer detalle en Orden</h4>
                     </div>
-                    <div>
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Cantidad:</label>
-                        <input type="number" class="form-control" id="paco" name="Mesa" min="1" value="1">
+                    <div class="modal-body">
+
+                        <table style="width:100%">
+                            <tr>
+                                <th> <p id="edit_nombre"></p></th>
+                                <th> <p>Precio : $ <span id="edit_precio"></span></p></th>
+                            </tr>
+                            <tr>
+                                <td><p>Cantidad:</p></td>
+                                <td><input type="number" class="form-control" id="Cantidad" name="Cantidad" min="1" max="5" value="1"></td>
+                            </tr>
+                        </table>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                    <div class="modal-footer">
+                        <div>
+
+                            <input type="hidden" id="Id_Menu" name="Id_Menu" class="edit_id">
+                            <input type="hidden" id="Mesa" name="Mesa" class="edit_idFactura">
+                        </div>
+
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" value="Agregar" class="btn btn-success" />
+
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal" data-id="1">test</button>
-
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" data-id="1">Open Modal</button>
     <!--Modal information-->
     <!-- Contenido del menu -->
 
@@ -67,19 +77,22 @@
             {
                 @Html.Raw("<div class='row'>");
 
-                <hr />
-                <h4 style="color:white; align-content:center">@item.Tipo_Producto</h4>
-                <hr />
-                <div class="col-xs-18 col-sm-6 col-md-4">
-                    <div class="thumbnail" style="background-color:black">
-                        <img src="http://placehold.it/500x300" alt="">
-                        <div class="caption">
-                            <h4>@item.nombre_Producto</h4>
-                            <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                            <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                <div class="filterDiv @item.Tipo_Producto">
+                    <hr />
+                    <h4 style="align-content:center">@item.Tipo_Producto</h4>
+                    <hr />
+                    <div class="col-xs-18 col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/500x300" alt="">
+                            <div class="caption">
+                                <h4>@item.nombre_Producto</h4>
+                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             }
             else
             {
@@ -87,14 +100,15 @@
                 if (title == item.Tipo_Producto)
                 {
 
-
-                    <div class="col-xs-18 col-sm-6 col-md-4">
-                        <div class="thumbnail" style="background-color:black">
-                            <img src="http://placehold.it/500x300" alt="">
-                            <div class="caption">
-                                <h4>@item.nombre_Producto</h4>
-                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                    <div class="filterDiv @item.Tipo_Producto">
+                        <div class="col-xs-18 col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/500x300" alt="">
+                                <div class="caption">
+                                    <h4>@item.nombre_Producto</h4>
+                                    <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,17 +117,18 @@
                 else
                 {
                     @Html.Raw("</div>\n<div class='row'>");
-
-                    <hr />
-                    <h4 style="color:white; align-content:center">@item.Tipo_Producto</h4>
-                    <hr />
-                    <div class="col-xs-18 col-sm-6 col-md-4">
-                        <div class="thumbnail" style="background-color:black">
-                            <img src="http://placehold.it/500x300" alt="">
-                            <div class="caption">
-                                <h4>@item.nombre_Producto</h4>
-                                <p>Cerveza Nacional... Precio: $ @item.Precio</p>
-                                <p><a href="#" class="btn btn-info btn-xs" role="button">Ordenar</a></p>
+                    <div class="filterDiv @item.Tipo_Producto">
+                        <hr />
+                        <h4 style="align-content:center">@item.Tipo_Producto</h4>
+                        <hr />
+                        <div class="col-xs-18 col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="http://placehold.it/500x300" alt="">
+                                <div class="caption">
+                                    <h4>@item.nombre_Producto</h4>
+                                    <p>Cerveza Nacional... Precio: $ @item.Precio</p>
+                                    <p><a href="#" class="btn btn-info btn-xs edit_button" role="button" data-toggle="modal" data-target="#myModal" data-id="@Html.DisplayFor(modelItem => item.idMenu)" data-nombre="@Html.DisplayFor(modelItem => item.nombre_Producto)" data-precio="@Html.DisplayFor(modelItem => item.Precio)">Ordenar</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,7 +148,7 @@
 <div class="navbar navbar-inverse navbar-fixed-bottom" style="background-color: slategray; height: 10px;">
     <div class="container">
         <div class="navbar-header" style="text-align: center">
-            <h4 style="color:white;" class="entry-title">Factura : XC0001</h4>
+            <h4 style="color:white;">Factura : <span class="entry-title">@ViewBag.Message</span></h4>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -144,29 +159,67 @@
         </div>
     </div>
 </div>
-
-
 <!--Codigo para tomar valor de la tabla-->
-
 <script>
-
     $(document).on("click", '.edit_button', function (e) {
-
-
         var h1Text = document.querySelector(".entry-title").textContent;
-        console.log(h1Text);
-
-
-
-
         var id = $(this).data('id');
+        var precio = $(this).data('precio');
+        var nombre = $(this).data('nombre');
 
         console.log(id);
-        $(".edit_id").val(h1Text);
+        console.log(precio);
+        console.log(nombre);
+
+
+        document.getElementById("edit_nombre").innerHTML = nombre;
+        document.getElementById("edit_precio").innerHTML = precio;
+
+        console.log(h1Text);
+
+        $(".edit_idFactura").val(h1Text);
+        $(".edit_id").val(id);
 
 
         $(".modal-title").val("Crear Factura para Mesa" + id);
     });
+
+
+</script>
+
+
+<script>
+    filterSelection("all")
+    function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+    }
+
+    function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+        }
+    }
+
+    function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+            }
+        }
+        element.className = arr1.join(" ");
+    }
 
 
 </script>

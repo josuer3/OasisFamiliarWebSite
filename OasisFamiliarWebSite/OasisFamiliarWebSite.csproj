@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerVM.cs" />
     <Compile Include="Models\DetalleFactura.cs" />
     <Compile Include="Models\DetallesVM.cs" />
     <Compile Include="Models\LoginVM.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Models\RegisterVM.cs" />
     <Compile Include="Models\SessionCLS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servics.Call\CustomerHelper.cs" />
     <Compile Include="Servics.Call\UsersServices.cs" />
   </ItemGroup>
   <ItemGroup>
