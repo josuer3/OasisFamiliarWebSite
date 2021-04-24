@@ -14,22 +14,79 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-        body {
-            background-color: black;
+        .filterDiv {
+            display: none;
         }
 
-        h3 {
-            color: yellow;
+        .show {
+            display: block;
         }
 
-        #contenido {
-            position: fixed;
-            top: 80px;
-            bottom: 80px;
-            left: 0;
+        .container {
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: inherit;
+            transition: all .5s;
+        }
+
+        .btn-primary.btn-outline {
+            color: #428bca;
+        }
+
+        .btn-success.btn-outline {
+            color: #5cb85c;
+        }
+
+        .btn-info.btn-outline {
+            color: #5bc0de;
+        }
+
+        .btn-warning.btn-outline {
+            color: #f0ad4e;
+        }
+
+        .btn-danger.btn-outline {
+            color: #d9534f;
+        }
+
+            .btn-primary.btn-outline:hover,
+            .btn-success.btn-outline:hover,
+            .btn-info.btn-outline:hover,
+            .btn-warning.btn-outline:hover,
+            .btn-danger.btn-outline:hover {
+                color: #fff;
+          }
+
+        footer {
+            position: absolute;
             right: 0;
-            overflow: auto;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            background-color: #efefef;
+            text-align: center;
         }
+
+        .opciones {
+            height: 200px;
+            position: relative;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+
+
     </style>
 
 </head>
@@ -58,8 +115,10 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
+        
         <footer>
+            <hr />
             <p>&copy; @DateTime.Now.Year - Siveresoft-UTEC</p>
         </footer>
     </div>

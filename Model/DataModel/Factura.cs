@@ -15,6 +15,7 @@ namespace Model.DataModel
         public int idCliente { get; set; }
         public int idVendedor { get; set; }
         public int idMesa { get; set; }
+        public int estado { get; set; }
 
 
     }
