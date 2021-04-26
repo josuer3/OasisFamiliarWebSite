@@ -1,0 +1,74 @@
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.DetalleFactura>
+
+@{
+    ViewBag.Title = "Factura";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<h2 style="text-align:center;">Factura: @ViewBag.Data.idFactura</h2>
+<h3 style="text-align:center;">@ViewBag.Data.Fecha</h3>
+
+
+<table class="table table-bordered border border-success ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 1;}
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td scope="row">@i</td>
+                <td>@item.productoNombre</td>
+                <td>@item.precio</td>
+                <td>@item.Cantidad</td>
+                <td id="loop">@item.total</td>
+            </tr>
+
+            i+=1;
+        }
+        <tr>
+            <td colspan="4" style="text-align:right; font-stretch:expanded; font-weight:bold">TOTAL:</td>
+            <td id="total">TOTAL</td>
+
+        </tr>
+    </tbody>
+</table>
+
+<div class="opciones">
+    <div class="btn-group-vertical center">
+        <button type="button" class="btn btn-primary btn-outline" onclick="location.href='@Url.Action("MenuPage", "Customer", new { item = ViewBag.Data.idFactura})'">Ordenar más</button>
+        <button type="button" class="btn btn-danger btn-outline">Llamar al Mesero</button>
+        <button type="button" class="btn btn-primary btn-outline">Pagar cuenta</button>
+    </div>
+</div>
+
+
+<script>
+
+    $(function () {
+
+        var TotalValue = 0;
+
+        $("tr #loop").each(function (index, value) {
+            currentRow = parseFloat($(this).text());
+            TotalValue += currentRow
+        });
+
+        document.getElementById('total').innerHTML = TotalValue;
+
+    });
+
+    
+</script>
+
+
+
+

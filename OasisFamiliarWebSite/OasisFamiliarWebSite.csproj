@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CuentaVM.cs" />
     <Compile Include="Models\CustomerVM.cs" />
     <Compile Include="Models\DetalleFactura.cs" />
     <Compile Include="Models\DetallesVM.cs" />
@@ -211,6 +212,8 @@
     <Content Include="Views\Receptionist\Historial.cshtml" />
     <Content Include="Views\Receptionist\CerrarSession.cshtml" />
     <Content Include="Views\Receptionist\VerFactura.cshtml" />
+    <Content Include="Views\Customer\VerFactura.cshtml" />
+    <Content Include="Views\Customer\Cuenta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Migracion : DbMigration
     {
         public override void Up()
         {
@@ -27,6 +27,7 @@
                         idCliente = c.Int(nullable: false),
                         idVendedor = c.Int(nullable: false),
                         idMesa = c.Int(nullable: false),
+                        estado = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.idFactura);
             
@@ -92,6 +93,8 @@
                         idUsuario = c.Int(nullable: false, identity: true),
                         Nombre_Usuario = c.String(),
                         Password = c.String(),
+                        Promociones = c.Boolean(nullable: false),
+                        Correo = c.String(),
                         idRol = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.idUsuario)
