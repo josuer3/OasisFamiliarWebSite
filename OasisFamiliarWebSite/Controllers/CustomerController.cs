@@ -40,9 +40,15 @@ namespace OasisFamiliarWebSite.Controllers
             cliente.idUsuario = logueado.idUsuario;
             cliente.EstadoCuenta = datosOrden.ObtenerEstadoCuenta(logueado.idUsuario);
 
-            if (cliente.EstadoCuenta != 0) {
+            if (cliente.EstadoCuenta != 0)
+            {
                 cliente.FacturaActual = datosOrden.FacturaActual(logueado.idUsuario);
                 cliente.MontoActual = datosOrden.MontoTotal(cliente.FacturaActual);
+            }
+            else 
+            {
+                cliente.FacturaActual = 0;
+                cliente.MontoActual = 0;
             }
 
             ViewBag.Data = cliente;
@@ -79,6 +85,8 @@ namespace OasisFamiliarWebSite.Controllers
             List<Menu> Listado = null;
 
             Listado = datosOrden.GetMenu();
+
+            ViewBag.Data.FacturaActual = idfactura;
 
             return View(Listado);
         }
