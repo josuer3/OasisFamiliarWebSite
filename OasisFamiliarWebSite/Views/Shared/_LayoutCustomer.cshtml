@@ -96,13 +96,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Oasis Familiar ", "Index", "Receptionist", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Oasis Familiar ", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Customer")</li>
-                    <li>@Html.ActionLink("Menu", "MenuPage", "Customer")</li>
-                    <li>@Html.ActionLink("Cuenta", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("Menu", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("Factura", "Index", "Customer")</li>
+                    <li>@Html.ActionLink("Configuración", "Cuenta", "Customer")</li>
                     <li>@Html.ActionLink("Salir", "Contact", "Receptionist")</li>
                 </ul>
 

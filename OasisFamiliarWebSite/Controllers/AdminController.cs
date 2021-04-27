@@ -13,5 +13,37 @@ namespace OasisFamiliarWebSite.Controllers
         {
             return View();
         }
+
+
+        // Revisar Mesas
+
+
+
+        // Revisar Facturas Pendientes
+
+
+        // Revisar Historial de Facturas
+
+
+        // Inventario
+        // Inventario Actual
+        // Agregar inventario
+
+
+        // Promociones
+        public ActionResult Promociones() {
+
+            return View();
+        }
+
+
+        // Agregar Promocion
+        public ActionResult NuevaPromociones()
+        {
+
+            return View();
+        }
+
+
     }
 }

@@ -214,10 +214,10 @@
     <Content Include="Views\Receptionist\VerFactura.cshtml" />
     <Content Include="Views\Customer\VerFactura.cshtml" />
     <Content Include="Views\Customer\Cuenta.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Cooker\" />
     <Folder Include="Views\LoginVM\" />
     <Folder Include="Views\Owner\" />

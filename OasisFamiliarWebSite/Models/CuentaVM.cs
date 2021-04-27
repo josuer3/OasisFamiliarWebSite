@@ -11,7 +11,7 @@ namespace OasisFamiliarWebSite.Models
     {
         [Key]
         public int idUsuario { get; set; }
-        [Display(Name = "Usuario")]
+        [Display(Name = "Nombre de Usuario")]
         public string Nombre_Usuario { get; set; }
         public string Password { get; set; }
         public bool Promociones { get; set; }
