@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Siveresoft-UTEC</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            text-align: right;
+        }
+
+        .filterDiv {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .container {
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: inherit;
+            transition: all .5s;
+        }
+
+        .btn-primary.btn-outline {
+            color: #428bca;
+        }
+
+        .btn-success.btn-outline {
+            color: #5cb85c;
+        }
+
+        .btn-info.btn-outline {
+            color: #5bc0de;
+        }
+
+        .btn-warning.btn-outline {
+            color: #f0ad4e;
+        }
+
+        .btn-danger.btn-outline {
+            color: #d9534f;
+        }
+
+            .btn-primary.btn-outline:hover,
+            .btn-success.btn-outline:hover,
+            .btn-info.btn-outline:hover,
+            .btn-warning.btn-outline:hover,
+            .btn-danger.btn-outline:hover {
+                color: #fff;
+          }
+
+        .opciones {
+            height: 200px;
+            position: relative;
+        }
+
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        a {
+            color:black;
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-light" style=" background-color: #B0E0E6;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Oasis Familiar ", "Index", "Customer", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Admin")</li>
+                    <li>@Html.ActionLink("Facturación", "Factura", "Admin")</li>
+                    <li>@Html.ActionLink("Inventario", "Inventario", "Admin")</li>
+                    <li>@Html.ActionLink("Promociones", "Promociones", "Admin")</li>
+                    <li>@Html.ActionLink("Usuarios", "Users", "Admin")</li>
+                    <li>@Html.ActionLink("Staff", "Staff", "Admin")</li>
+                    <li>@Html.ActionLink("Salir", "Salir", "Account")</li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer fixed-bottom">
+        <hr />
+        <p>&copy; @DateTime.Now.Year - Siveresoft-UTEC</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
