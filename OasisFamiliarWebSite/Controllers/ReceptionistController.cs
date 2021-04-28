@@ -26,15 +26,12 @@ namespace OasisFamiliarWebSite.Controllers
             List<Mesas> ListaMesas = null;
 
             List<MesasVM> ListadoMesas = new List<MesasVM>();
-
-
             using (var bd = new ContextDB())
             {
                 var data = bd.Mesas.ToList();
                 ListaMesas = bd.Mesas.ToList();
 
             }
-
 
             foreach (var data in ListaMesas)
             {
@@ -47,7 +44,6 @@ namespace OasisFamiliarWebSite.Controllers
                     TotalFactura = null,
                 });
             }
-
 
             for (int i = 0; i < ListadoMesas.Count; i++) {
                 if (ListaMesas[i].Disponible == 1)
@@ -65,7 +61,6 @@ namespace OasisFamiliarWebSite.Controllers
                     }
                 }
             }
-
             return View(ListadoMesas);
         }
 
@@ -226,7 +221,6 @@ namespace OasisFamiliarWebSite.Controllers
             return View();
         }
 
-
         public ActionResult CerrarSession()
         {
 
@@ -248,7 +242,6 @@ namespace OasisFamiliarWebSite.Controllers
 
             return RedirectToAction("Login", "Account");
         }
-
 
         public ActionResult MenuPage(Factura item)
         {
@@ -285,8 +278,6 @@ namespace OasisFamiliarWebSite.Controllers
             return View(Listado);
         }
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
-
-
 
         [HttpPost]
         public JsonResult VerifyIfUserExist(string Nombre_Usuario)
