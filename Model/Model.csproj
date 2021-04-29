@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\Promociones.cs" />
     <Compile Include="DataModel\Usuario.cs" />
     <Compile Include="DataModel\Comprado.cs" />
     <Compile Include="DataModel\ContextDB.cs" />
@@ -60,24 +61,21 @@
     <Compile Include="DataModel\Menu.cs" />
     <Compile Include="DataModel\Mesas.cs" />
     <Compile Include="DataModel\Rol.cs" />
-    <Compile Include="Migrations\202104260506472_Migracion.cs" />
-    <Compile Include="Migrations\202104260506472_Migracion.designer.cs">
-      <DependentUpon>202104260506472_Migracion.cs</DependentUpon>
+    <Compile Include="Migrations\202104291518232_versionCasi.cs" />
+    <Compile Include="Migrations\202104291518232_versionCasi.designer.cs">
+      <DependentUpon>202104291518232_versionCasi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <EmbeddedResource Include="Migrations\202104291518232_versionCasi.resx">
+      <DependentUpon>202104291518232_versionCasi.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104260506472_Migracion.resx">
-      <DependentUpon>202104260506472_Migracion.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -21,5 +21,7 @@ namespace Model.DataModel
         public DbSet<Mesas> Mesas { get; set; }
         public DbSet<Rol> Rol { get; set; }
         public DbSet<Inventario> Inventario { get; set; }
+        
+        public DbSet<Promociones> Promociones { get; set; }
     }
 }

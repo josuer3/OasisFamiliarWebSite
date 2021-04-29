@@ -7,13 +7,13 @@ namespace Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Migracion : IMigrationMetadata
+    public sealed partial class versionCasi : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Migracion));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(versionCasi));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104260506472_Migracion"; }
+            get { return "202104291518232_versionCasi"; }
         }
         
         string IMigrationMetadata.Source
