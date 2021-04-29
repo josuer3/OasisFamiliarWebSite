@@ -1,4 +1,6 @@
-﻿
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.FacturasPendientesVM>
+
+
 @{
     ViewBag.Title = "VerFacturaPendientes";
     Layout = "~/Views/Shared/_LayoutReceptionist.cshtml";
@@ -7,60 +9,75 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<div class="container">
-    <div class="row">
+<table class="table table-bordered border border-success ">
+   
+    <tbody>
+        @foreach (var item in Model)
+        {
 
-        <section class="content">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
+            <tr>
+               
+                <td>
 
+                    @{ int ejemplo = item.estado;}
+
+                    @if (ejemplo == 0)
+                    {
+                        <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal"
+                                data-id="@Html.DisplayFor(modelItem => item.estado)" data-id="@Html.DisplayFor(modelItem => item.Fecha)">
+                            No hay Facturas pendientes
+                        </button>
+                    }
+                    else if (ejemplo == 1)
+                    {
                        
+                       
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Factura</th>
+                                    <th scope="col">Mesa</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>@Html.DisplayFor(modelItem => item.idFactura)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.idMesa)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.usuario)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.total)</td>
+                                </tr>                                
+                            </tbody>
+                        </table>
 
-                        <div class="table-container">
-                            
-                                <tbody>
-                                   
-                                    <tr data-status="pendiente">
-                                        <td>
-                                            Factura Pendiente
-                                        </td>
+                    }
 
-                                    </tr>
-                                                                 
-                                </tbody>
-                            
-                        </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </section>
+                </td>
+            </tr>
+        }
+    </tbody>
 
-    </div>
-</div>
+</table>
+
+<!--Codigo para tomar valor de la tabla-->
 
 <script>
-    $(document).ready(function () {
 
-        $('.star').on('click', function () {
-            $(this).toggleClass('star-checked');
-        });
+    $(document).on("click", '.edit_button', function (e) {
+        var id = $(this).data('id');
+        var fac = $(this).data('factura');
 
-        $('.ckbox label').on('click', function () {
-            $(this).parents('tr').toggleClass('selected');
-        });
+        console.log(id);
+        $(".edit_id").val(id);
+        console.log(fac);
+        $(".factura_id").val(fac);
 
-        $('.btn-filter').on('click', function () {
-            var $target = $(this).data('target');
-            if ($target != 'all') {
-                $('.table tr').css('display', 'none');
-                $('.table tr[data-status="' + $target + '"]').fadeIn('slow');
-            } else {
-                $('.table tr').css('display', 'none').fadeIn('slow');
-            }
-        });
 
+        $(".modal-title").val("Crear Factura para Mesa" + id);
     });
 
- </script>
+
+</script>

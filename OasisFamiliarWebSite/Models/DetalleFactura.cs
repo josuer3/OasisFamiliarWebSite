@@ -13,11 +13,10 @@ namespace OasisFamiliarWebSite.Models
         public int idFactura { get; set; }
         public int idMenu { get; set; }
         public int Cantidad { get; set; }
-
         public string productoNombre { get; set; }
         public double precio { get; set; }
-
         public double total { get; set; }
+        public int estado { get; set; }
 
     }
 }

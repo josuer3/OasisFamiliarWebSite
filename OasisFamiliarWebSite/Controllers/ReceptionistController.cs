@@ -53,7 +53,7 @@ namespace OasisFamiliarWebSite.Controllers
                     {
                         //var factura = context.Fac.SingleOrDefault(b => b.idMesa == idMesa);
                         var cliente = context.Factura.OrderByDescending(x => x.idMesa).ToList();
-                        //dato quemado es 10
+                        
                         var detalle = (from s in cliente
                                        where s.idMesa == ListadoMesas[i].idMesa
                                        select s).LastOrDefault<Factura>();
@@ -212,8 +212,55 @@ namespace OasisFamiliarWebSite.Controllers
         }
         public ActionResult VerFacturaPendientes()
         {
+           
 
-            return View();
+
+            /*Proceso:
+             1 Modelo para poner datos en pantalla...precisooooo
+             2 tomar la informacion de todas las facturas pendienteee!!!!!!!!! Usa un where
+             3 crear una nueva lista con el nuevo modal, llenarlo con la informacion de las facturas pendientes
+             4 Crear otro for each para poner los datos que no estan en el punto 2
+             5 despues de tener la nueva lista del nuevo modelo mandarlo a pantalla                                                                   
+             */
+
+
+            //lista nueva BoldaMixcta
+
+            List<Factura> ListaFacturasPendientes = null;
+
+            List<FacturasPendientesVM> ListadoFacturasPemdientes = new List<FacturasPendientesVM>();
+
+
+           using (var bd = new ContextDB())
+            {
+                ListaFacturasPendientes = bd.Factura.Where(x => x.estado == 1).ToList();
+            }
+
+            foreach (var data in ListaFacturasPendientes)
+            {
+                ListadoFacturasPemdientes.Add(new FacturasPendientesVM()
+                {
+
+                    idFactura = data.idFactura,
+                    Fecha = data.Fecha,
+                    idCliente = data.idCliente,
+                    idVendedor = data.idVendedor,
+                    idMesa = data.idMesa,
+                    estado = data.estado,
+                    Cantidad = 0,
+                    usuario = "pedro",
+                    total = 110
+
+                });
+            }
+
+
+            
+
+            return View(ListadoFacturasPemdientes);
+
+
+       
         }
         public ActionResult Historial()
         {
