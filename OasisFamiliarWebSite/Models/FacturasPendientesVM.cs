@@ -6,17 +6,18 @@ using System.Web;
 
 namespace OasisFamiliarWebSite.Models
 {
-    public class DetalleFactura
+    public class FacturasPendientesVM
     {
         [Key]
-        public int idComprado { get; set; }
         public int idFactura { get; set; }
-        public int idMenu { get; set; }
-        public int Cantidad { get; set; }
-        public string productoNombre { get; set; }
-        public double precio { get; set; }
-        public double total { get; set; }
+        public DateTime Fecha { get; set; }
+        public int idCliente { get; set; }
+        public int idVendedor { get; set; }
+        public int idMesa { get; set; }
         public int estado { get; set; }
-
+        public int Cantidad { get; set; }
+        public string usuario { get; set; }
+     
+        public double total { get; set; }
     }
 }

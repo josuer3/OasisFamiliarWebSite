@@ -146,6 +146,7 @@
     <Compile Include="Models\CustomerVM.cs" />
     <Compile Include="Models\DetalleFactura.cs" />
     <Compile Include="Models\DetallesVM.cs" />
+    <Compile Include="Models\FacturasPendientesVM.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\MesasVM.cs" />
     <Compile Include="Models\RegisterVM.cs" />
