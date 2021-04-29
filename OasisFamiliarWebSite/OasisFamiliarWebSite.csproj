@@ -149,6 +149,7 @@
     <Compile Include="Models\DetallesVM.cs" />
     <Compile Include="Models\LoginVM.cs" />
     <Compile Include="Models\MesasVM.cs" />
+    <Compile Include="Models\PromoMV.cs" />
     <Compile Include="Models\RegisterVM.cs" />
     <Compile Include="Models\SessionCLS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,6 +216,9 @@
     <Content Include="Views\Customer\VerFactura.cshtml" />
     <Content Include="Views\Customer\Cuenta.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\EditPromo.cshtml" />
+    <Content Include="Views\Admin\NewPromo.cshtml" />
+    <Content Include="Views\Admin\VerPromo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
