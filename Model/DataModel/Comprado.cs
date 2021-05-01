@@ -16,6 +16,7 @@ namespace Model.DataModel
         public int idFactura { get; set; }
         public int idMenu { get; set; }
         public int Cantidad { get; set; }
-
+        public int estado { get; set; }
+        public DateTime Fecha { get; set; }
     }
 }

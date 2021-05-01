@@ -7,13 +7,13 @@ namespace Model.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class versionCasi : IMigrationMetadata
+    public sealed partial class OasisFamiliarWebSite : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(versionCasi));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(OasisFamiliarWebSite));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104291518232_versionCasi"; }
+            get { return "202105010541330_OasisFamiliarWebSite"; }
         }
         
         string IMigrationMetadata.Source

@@ -61,21 +61,21 @@
     <Compile Include="DataModel\Menu.cs" />
     <Compile Include="DataModel\Mesas.cs" />
     <Compile Include="DataModel\Rol.cs" />
-    <Compile Include="Migrations\202104291518232_versionCasi.cs" />
-    <Compile Include="Migrations\202104291518232_versionCasi.designer.cs">
-      <DependentUpon>202104291518232_versionCasi.cs</DependentUpon>
+    <Compile Include="Migrations\202105010541330_OasisFamiliarWebSite.cs" />
+    <Compile Include="Migrations\202105010541330_OasisFamiliarWebSite.designer.cs">
+      <DependentUpon>202105010541330_OasisFamiliarWebSite.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104291518232_versionCasi.resx">
-      <DependentUpon>202104291518232_versionCasi.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105010541330_OasisFamiliarWebSite.resx">
+      <DependentUpon>202105010541330_OasisFamiliarWebSite.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
