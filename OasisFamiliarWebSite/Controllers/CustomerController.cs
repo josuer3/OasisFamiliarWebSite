@@ -25,15 +25,14 @@ namespace OasisFamiliarWebSite.Controllers
 
             using (var bd = new ContextDB())
             {
-                logueado = bd.Usuario.FirstOrDefault(x => x.idUsuario == 6);
+                logueado = bd.Usuario.FirstOrDefault(x => x.idUsuario == logueado.idUsuario);
             }
 
             /*
-            Configuracion para usar valores sin quemar 
+            Configuracion para usar valores sin quemar*
             var usuario = Session["Data"];
             Usuario logueado = (Usuario)usuario; 
-
-             */
+            */
 
             //Buscar informacion de orden
             cliente.Nombre_Usuario = logueado.Nombre_Usuario;
@@ -151,7 +150,7 @@ namespace OasisFamiliarWebSite.Controllers
 
             using (var bd = new ContextDB())
             {
-                logueado = bd.Usuario.FirstOrDefault(x => x.idUsuario == 6);
+                logueado = bd.Usuario.FirstOrDefault(x => x.idUsuario == logueado.idUsuario);
             }
 
             CuentaVM Usuario = new CuentaVM();
@@ -164,5 +163,28 @@ namespace OasisFamiliarWebSite.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult Cuenta(CuentaVM model)
+        {
+
+            if (ModelState.IsValid) 
+            {
+
+                using (var bd = new ContextDB())
+                {
+                    var usuarioActualizar = bd.Usuario.Find(model.idUsuario);
+
+                    usuarioActualizar.Promociones = model.Promociones;
+                    usuarioActualizar.Correo = model.Correo;
+
+                    bd.Entry(usuarioActualizar).State = System.Data.Entity.EntityState.Modified;
+                    bd.SaveChanges();
+
+                    ViewBag.Message = "Usuario actualizado";
+                }
+            }
+
+            return View(model);
+        }
     }
 }

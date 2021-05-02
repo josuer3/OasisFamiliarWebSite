@@ -1,7 +1,8 @@
-﻿@model IEnumerable<Model.DataModel.Promociones>
+﻿@model IEnumerable<OasisFamiliarWebSite.Models.PromoMV>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <!--Modal Nueva promocion information-->
@@ -86,27 +87,26 @@
 
 
 
+@{if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaInicio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Activar)
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaInicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaFin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-    </tr>
-
-    @{if (Model != null)
-        {
-
-            foreach (var item in Model)
+            @foreach (var item in Model)
             {
                 <tr>
                     <td>
@@ -116,35 +116,38 @@
                         @Html.DisplayFor(modelItem => item.fechaFin)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
+                        @Html.DisplayFor(modelItem => item.Titulo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Active)
+                        @Html.DisplayFor(modelItem => item.Activar)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.idPromociones }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.idPromociones }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.idPromociones })
+                        @Html.ActionLink("Editar", "Edit", new { id = item.idPromociones }) |
+                        @Html.ActionLink("Ver", "Details", new { id = item.idPromociones }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.idPromociones })
                     </td>
                 </tr>
             }
 
+        </table>
 
-        }
-        else
-        {
 
-            <tr>
-                <td>
-                    <h1>No hay promociones disponibles</h1>
-                    <button>Create nueva Promocion</button>
-                </td>
-            </tr>
+        
+        @Html.ActionLink("Create nueva Promocion", "CrearPromo", "Admin", new { @class = "btn btn-success" })
 
-        }
+    }
+    else
+    {
 
+
+        <h2>No hay promociones disponibles</h2>
+        @Html.ActionLink("Create nueva Promocion", "CrearPromo", "Admin", new { @class = "btn btn-success" })
 
 
     }
+}
 
-</table>
+
+
+
+

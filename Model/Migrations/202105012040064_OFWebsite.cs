@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class OasisFamiliarWebSite : DbMigration
+    public partial class OFWebsite : DbMigration
     {
         public override void Up()
         {
