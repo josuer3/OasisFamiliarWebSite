@@ -61,9 +61,13 @@
     <Compile Include="DataModel\Menu.cs" />
     <Compile Include="DataModel\Mesas.cs" />
     <Compile Include="DataModel\Rol.cs" />
-    <Compile Include="Migrations\202105010541330_OasisFamiliarWebSite.cs" />
-    <Compile Include="Migrations\202105010541330_OasisFamiliarWebSite.designer.cs">
-      <DependentUpon>202105010541330_OasisFamiliarWebSite.cs</DependentUpon>
+    <Compile Include="Migrations\202105012040064_OFWebsite.cs" />
+    <Compile Include="Migrations\202105012040064_OFWebsite.designer.cs">
+      <DependentUpon>202105012040064_OFWebsite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105012126155_OFWebsite1.cs" />
+    <Compile Include="Migrations\202105012126155_OFWebsite1.designer.cs">
+      <DependentUpon>202105012126155_OFWebsite1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,8 +77,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105010541330_OasisFamiliarWebSite.resx">
-      <DependentUpon>202105010541330_OasisFamiliarWebSite.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105012040064_OFWebsite.resx">
+      <DependentUpon>202105012040064_OFWebsite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105012126155_OFWebsite1.resx">
+      <DependentUpon>202105012126155_OFWebsite1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

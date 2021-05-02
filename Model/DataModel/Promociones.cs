@@ -17,8 +17,10 @@ namespace Model.DataModel
         public DateTime fechaInicio { get; set; }
         [Required]
         public DateTime fechaFin { get; set; }
+
+        public string Titulo { get; set; }
         public string Descripcion { get; set; }
-        public bool Active { get; set; }
+        public int Active { get; set; }
 
     }
 }

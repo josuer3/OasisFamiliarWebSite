@@ -153,6 +153,7 @@
     <Compile Include="Models\SessionCLS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servics.Call\CustomerHelper.cs" />
+    <Compile Include="Servics.Call\MailServices.cs" />
     <Compile Include="Servics.Call\UsersServices.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,11 +215,10 @@
     <Content Include="Views\Customer\VerFactura.cshtml" />
     <Content Include="Views\Customer\Cuenta.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\EditPromo.cshtml" />
-    <Content Include="Views\Admin\NewPromo.cshtml" />
-    <Content Include="Views\Admin\VerPromo.cshtml" />
     <Content Include="Views\Shared\_LayoutCooker.cshtml" />
     <Content Include="Views\Cooker\Ordenes.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Admin\CrearPromo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
