@@ -162,15 +162,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\img\background.jpg" />
+    <Content Include="Content\img\Menu\Balde _de_Golden.png" />
+    <Content Include="Content\img\Menu\Balde_Pilsener.jpg" />
+    <Content Include="Content\img\Menu\Carne_Asada.jpg" />
+    <Content Include="Content\img\Menu\Pilsener.jpg" />
+    <Content Include="Content\img\Menu\Pollo.jpg" />
+    <Content Include="Content\img\Menu\Sopa_de_tortilla_%28Boca%29.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\img\bebidas\1485269740768.jpg" />
-    <Content Include="Content\img\bebidas\coca-cola.png" />
-    <Content Include="Content\img\bebidas\download.jfif" />
-    <Content Include="Content\img\bebidas\easy-tequila-carne-asada-vianneyrodriguez-sweetlifebake.jpg" />
-    <Content Include="Content\img\bebidas\pilsener.jfif" />
+    <Content Include="Content\img\Menu\download.jfif" />
+    <Content Include="Content\img\Menu\pilsener.jfif" />
     <Content Include="Content\img\logo.jpeg" />
     <Content Include="Content\img\user.png" />
     <Content Include="Scripts\bootstrap.js" />
@@ -219,6 +222,7 @@
     <Content Include="Views\Cooker\Ordenes.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\CrearPromo.cshtml" />
+    <Content Include="Views\Account\Salir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

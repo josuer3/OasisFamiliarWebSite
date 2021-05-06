@@ -10,12 +10,10 @@ using System.Web.Security;
 
 namespace OasisFamiliarWebSite.Controllers
 {
-    
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         UsersServices _manejoUserServices = new UsersServices();
-
-
         SessionCLS sessiom = new SessionCLS();
 
         // GET: Account
@@ -43,6 +41,9 @@ namespace OasisFamiliarWebSite.Controllers
 
                         case "Mesero":
                             return RedirectToAction("Index", "Receptionist");
+
+                        case "Admin":
+                            return RedirectToAction("Index", "Admin");
 
                         default:
                             return RedirectToAction("About", "Home");

@@ -151,8 +151,8 @@ namespace OasisFamiliarWebSite.Controllers
             return RedirectToAction("MenuPage", "Receptionist", factura);
         }
 
-        [HttpPost]
-        public ActionResult VerFactura(string mesa, string factura)
+  
+        public ActionResult VerFactura(string factura)
         {
             int fact = 0;
             Int32.TryParse(factura, out fact);
@@ -167,12 +167,8 @@ namespace OasisFamiliarWebSite.Controllers
                 ViewBag.Data = facturaDetalle;
                 detalle = data.ToList();
             }
-
-            
-
-
+           
             List<DetalleFactura> detalleOrden = new List<DetalleFactura>();
-
 
             foreach (var data in detalle)
             {
@@ -186,7 +182,6 @@ namespace OasisFamiliarWebSite.Controllers
                     precio = 0
                 });
             }
-
 
             for (int i = 0; i < detalleOrden.Count; i++)
             {
@@ -306,14 +301,16 @@ namespace OasisFamiliarWebSite.Controllers
         {
             Comprado orden = new Comprado();
             orden.Cantidad = Cantidad;
-            orden.idFactura = 21;
+            orden.idFactura = Mesa;
             orden.idMenu = Id_Menu;
+            orden.estado = 1;
+            orden.Fecha = DateTime.Parse("2021-05-01");
 
-            using (var context = new ContextDB())
+
+            using (var bd = new ContextDB())
             {
-
-                context.Comprado.Add(orden);
-                context.SaveChanges();
+                bd.Comprado.Add(orden);
+                bd.SaveChanges();
             }
 
 
@@ -322,7 +319,9 @@ namespace OasisFamiliarWebSite.Controllers
 
             Listado = GetMenu(Listado);
 
-            return View(Listado);
+            return RedirectToAction("VerFactura", "Receptionist", new { factura = Mesa.ToString() });
+
+
         }
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
 

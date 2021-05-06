@@ -74,7 +74,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Oasis Familiar ", "MenuPage", "Receptionist", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Oasis Familiar ", "Index", "Receptionist", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -82,7 +82,7 @@
                     @* <li>@Html.ActionLink("Factura", "Factura", "Receptionist")</li> *@
                     <li>@Html.ActionLink("Facturas Pendientes", "VerFacturaPendientes", "Receptionist")</li>
                     <li>@Html.ActionLink("Historial", "Historial", "Receptionist")</li>
-                    <li>@Html.ActionLink("Salir Del Sistema", "CerrarSession", "Receptionist")</li>
+                    <li>@Html.ActionLink("Salir", "Salir", "Account")</li>
                 </ul>
 
             </div>
