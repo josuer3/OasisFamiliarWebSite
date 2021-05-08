@@ -228,7 +228,7 @@ namespace OasisFamiliarWebSite.Controllers
 
            using (var bd = new ContextDB())
             {
-                ListaFacturasPendientes = bd.Factura.Where(x => x.estado == 1).ToList();
+                ListaFacturasPendientes = bd.Factura.Where(x => x.estado == 0).ToList();
             }
 
             foreach (var data in ListaFacturasPendientes)

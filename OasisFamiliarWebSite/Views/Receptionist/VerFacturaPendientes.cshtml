@@ -9,55 +9,53 @@
 
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+
+
 <table class="table table-bordered border border-success ">
-   
+    .
+    <thead class="thead-dark">
+        <tr>
+            
+            <th scope="col">Mesa</th>
+            <th scope="col">Factura</th>
+            
+            <th scope="col">Usuario</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
 
+
+
             <tr>
-               
-                <td>
+                        @{ int ejemplo = item.estado;}
 
-                    @{ int ejemplo = item.estado;}
+                        @if (ejemplo == 0)
+                        {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.idMesa)</td>
+                            <td>@Html.DisplayFor(modelItem => item.idFactura)</td>
+                            
+                            <td>@Html.DisplayFor(modelItem => item.usuario)</td>
+                            <td>@Html.DisplayFor(modelItem => item.total)</td>
+                        </tr>
 
-                    @if (ejemplo == 0)
-                    {
-                        <button type="button" class="btn btn-primary edit_button" data-toggle="modal" data-target="#myModal"
-                                data-id="@Html.DisplayFor(modelItem => item.estado)" data-id="@Html.DisplayFor(modelItem => item.Fecha)">
-                            No hay Facturas pendientes
-                        </button>
                     }
                     else if (ejemplo == 1)
                     {
-                       
-                       
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Factura</th>
-                                    <th scope="col">Mesa</th>
-                                    <th scope="col">Usuario</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>@Html.DisplayFor(modelItem => item.idFactura)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.idMesa)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.usuario)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.total)</td>
-                                </tr>                                
-                            </tbody>
-                        </table>
+
+
 
                     }
+                </tr>
 
-                </td>
-            </tr>
-        }
+
+
+
+
+            }
     </tbody>
 
 </table>

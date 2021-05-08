@@ -83,8 +83,14 @@
                     <hr />
                     <div class="col-xs-18 col-sm-6 col-md-4">
                         <div class="thumbnail">
-                            <img src="~/Content/img/Menu/Valde.jpg" />
-                            <img src="http://placehold.it/500x300" alt="">
+
+                            @{ string link;
+                                if (item.nombre_Producto != "")
+                                {
+                                    link = "../Content/img/Menu/"+item.nombre_Producto+".jpg";
+                                }
+                                else { link = ""; } }
+                            <img src="@link" style="width:80px;"/>
                             <div class="caption">
                                 <h4>@item.nombre_Producto</h4>
                                 <p>Cerveza Nacional... Precio: $ @item.Precio</p>
@@ -104,8 +110,13 @@
                     <div class="filterDiv @item.Tipo_Producto">
                         <div class="col-xs-18 col-sm-6 col-md-4">
                             <div class="thumbnail">
-                                <img src="~/Content/img/Menu/pilsener-1000x1000.jpg" />
-                                <img src="http://placehold.it/500x300" alt="">
+                                @{ string link;
+                                    if (item.nombre_Producto != "")
+                                    {
+                                        link = "../Content/img/Menu/" + item.nombre_Producto + ".jpg";
+                                    }
+                                    else { link = ""; } }
+                                <img src="@link" style="width:80px;"/>
                                 <div class="caption">
                                     <h4>@item.nombre_Producto</h4>
                                     <p>Cerveza Nacional... Precio: $ @item.Precio</p>
@@ -126,8 +137,13 @@
                         <div class="col-xs-18 col-sm-6 col-md-4">
                             <div class="thumbnail">
 
-                                <img src="~/Content/img/Menu/sopa de torilla.jpg" />
-                                <img src="http://placehold.it/500x300" alt="">
+                                @{ string link;
+                                    if (item.nombre_Producto != "")
+                                    {
+                                        link = "../Content/img/Menu/" + item.nombre_Producto + ".jpg";
+                                    }
+                                    else { link = ""; } }
+                                <img src="@link" style="width:80px;" />
                                 <div class="caption">
                                     <h4>@item.nombre_Producto</h4>
                                     <p>Cerveza Nacional... Precio: $ @item.Precio</p>
