@@ -4,6 +4,7 @@ using OasisFamiliarWebSite.Models;
 using Microsoft.AspNet.Identity;
 using OasisFamiliarServices.Services;
 using System.Web.Security;
+using System;
 
 namespace OasisFamiliarWebSite.Servics.Call
 {
@@ -15,17 +16,25 @@ namespace OasisFamiliarWebSite.Servics.Call
 
         public bool IniciarSesion( LoginVM model)/* login vista modelo = es el modelo que se usara para la vista de login*/
         {
-            var user = db.Usuario.Where(y => y.Nombre_Usuario == model.UUsuario).Single();
-            /*SELECT * from db.Usuario where nombre-usario = model.UUsuario--- expresiones Lambda*/
 
-            if (ValidacionPassword(user.idUsuario, model.Password))
+            try
             {
-            //    FormsAuthentication.SetAuthCookie(user.Nombre_Usuario, false);
-                sessiom.setSession(user.Nombre_Usuario,user.Role.Nombre_Rol, user);
-                return  true;
-            }
+                var user = db.Usuario.Where(y => y.Nombre_Usuario == model.UUsuario).Single();
+                /*SELECT * from db.Usuario where nombre-usario = model.UUsuario--- expresiones Lambda*/
 
-            return false;
+                if (ValidacionPassword(user.idUsuario, model.Password))
+                {
+                    //    FormsAuthentication.SetAuthCookie(user.Nombre_Usuario, false);
+                    sessiom.setSession(user.Nombre_Usuario, user.Role.Nombre_Rol, user);
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }                                     
         }
 
         public bool CrearUsuario(RegisterVM model)

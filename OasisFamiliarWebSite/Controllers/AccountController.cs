@@ -45,8 +45,11 @@ namespace OasisFamiliarWebSite.Controllers
                         case "Admin":
                             return RedirectToAction("Index", "Admin");
 
+                        case "Cocinero":
+                            return RedirectToAction("Ordenes", "Cooker");
+
                         default:
-                            return RedirectToAction("About", "Home");
+                            return RedirectToAction("Login", "Account");
                     }
 
 

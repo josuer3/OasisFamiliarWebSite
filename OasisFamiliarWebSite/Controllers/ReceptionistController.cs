@@ -12,11 +12,12 @@ using OasisFamiliarWebSite.Servics.Call;
 
 namespace OasisFamiliarWebSite.Controllers
 {
+
     public class ReceptionistController : Controller
     {
 
         UsersServices _manejoUserServices = new UsersServices();
-
+        CustomerHelper customerDetails = new CustomerHelper();
 
         // GET: Receptionist
 
@@ -77,9 +78,6 @@ namespace OasisFamiliarWebSite.Controllers
 
 
             }
-
-
-
             return View();
         }
 
@@ -201,10 +199,34 @@ namespace OasisFamiliarWebSite.Controllers
 
             }
 
-
             return View(detalleOrden);
 
         }
+
+        public ActionResult Pagar(int id_factura) {
+
+            Factura UpdateFactura = null;
+            Mesas UpdateMesa = null;
+
+            using (var bd = new ContextDB())
+            {
+
+                UpdateFactura = bd.Factura.Find(id_factura);
+                UpdateFactura.estado = 1;
+
+                UpdateMesa = bd.Mesas.Find(UpdateFactura.idMesa);
+                UpdateMesa.Disponible = 0;
+
+                bd.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Receptionist");
+        }
+
+
+
+
+
         public ActionResult VerFacturaPendientes()
         {
            
@@ -243,14 +265,26 @@ namespace OasisFamiliarWebSite.Controllers
                     idMesa = data.idMesa,
                     estado = data.estado,
                     Cantidad = 0,
-                    usuario = "pedro",
-                    total = 110
+                    usuario = "",
+                    total = customerDetails.MontoTotal(data.idFactura)
 
                 });
             }
 
+            for (int i = 0; i < ListadoFacturasPemdientes.Count; i++)
+            {
+                int cliente = ListadoFacturasPemdientes[i].idCliente;
 
-            
+                //Hacer configuracion de obtener datos 
+                using (var context = new ContextDB())
+                {
+                    Usuario clientee = context.Usuario.Find(cliente);
+                    ListadoFacturasPemdientes[i].usuario = clientee.Nombre_Usuario;
+                }
+
+            }
+
+
 
             return View(ListadoFacturasPemdientes);
 
@@ -260,7 +294,50 @@ namespace OasisFamiliarWebSite.Controllers
         public ActionResult Historial()
         {
 
-            return View();
+            List<Factura> ListaFacturasPendientes = null;
+
+            List<FacturasPendientesVM> ListadoFacturasPemdientes = new List<FacturasPendientesVM>();
+
+
+            using (var bd = new ContextDB())
+            {
+                ListaFacturasPendientes = bd.Factura.Where(x => x.estado != 0).ToList();
+            }
+
+            foreach (var data in ListaFacturasPendientes)
+            {
+                ListadoFacturasPemdientes.Add(new FacturasPendientesVM()
+                {
+
+                    idFactura = data.idFactura,
+                    Fecha = data.Fecha,
+                    idCliente = data.idCliente,
+                    idVendedor = data.idVendedor,
+                    idMesa = data.idMesa,
+                    estado = data.estado,
+                    Cantidad = 0,
+                    usuario = "",
+                    total = customerDetails.MontoTotal(data.idFactura)
+
+                });
+            }
+
+            for (int i = 0; i < ListadoFacturasPemdientes.Count; i++)
+            {
+                int cliente = ListadoFacturasPemdientes[i].idCliente;
+
+                //Hacer configuracion de obtener datos 
+                using (var context = new ContextDB())
+                {
+                    Usuario clientee = context.Usuario.Find(cliente);
+                    ListadoFacturasPemdientes[i].usuario = clientee.Nombre_Usuario;
+                }
+
+            }
+
+
+
+            return View(ListadoFacturasPemdientes);
         }
 
         public ActionResult CerrarSession()
@@ -304,7 +381,7 @@ namespace OasisFamiliarWebSite.Controllers
             orden.idFactura = Mesa;
             orden.idMenu = Id_Menu;
             orden.estado = 1;
-            orden.Fecha = DateTime.Parse("2021-05-01");
+            orden.Fecha = DateTime.Now;
 
 
             using (var bd = new ContextDB())
@@ -323,6 +400,7 @@ namespace OasisFamiliarWebSite.Controllers
 
 
         }
+
         //---------------------------------------------------------------------END POINT--------------------------------------------------------------------------//
 
         [HttpPost]

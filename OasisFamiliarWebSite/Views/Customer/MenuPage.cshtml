@@ -10,6 +10,10 @@
     <div style="text-align:center;">
         <h2 style="font-weight:bold">ORDENAR AHORA</h2>
         <h4>Factura : <span class="entry-title">@ViewBag.Message</span></h4>
+        
+         @if (ViewBag.Error!=null) { 
+    <h4 style="color:red">No hay mesa asignada</h4>            }
+
     </div>
 
 

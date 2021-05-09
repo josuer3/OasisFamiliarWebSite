@@ -9,13 +9,14 @@ using OasisFamiliarWebSite.Servics.Call;
 
 namespace OasisFamiliarWebSite.Controllers
 {
-    
 
+   
     public class CustomerController : Controller
     {
         // GET: Customer
         CustomerHelper datosOrden = new CustomerHelper();
         CustomerVM cliente = new CustomerVM();
+
 
         public ActionResult Index()
         {
@@ -41,8 +42,22 @@ namespace OasisFamiliarWebSite.Controllers
 
             if (cliente.EstadoCuenta != 0)
             {
-                cliente.FacturaActual = datosOrden.FacturaActual(logueado.idUsuario);
-                cliente.MontoActual = datosOrden.MontoTotal(cliente.FacturaActual);
+                using (var bd = new ContextDB())
+                {
+                    Factura data = bd.Factura.Find(datosOrden.FacturaActual(logueado.idUsuario));
+
+                    if (data.estado == 0)
+                    {
+                        cliente.FacturaActual = datosOrden.FacturaActual(logueado.idUsuario);
+                        cliente.MontoActual = datosOrden.MontoTotal(cliente.FacturaActual);
+                    }
+                    else 
+                    {
+                        cliente.FacturaActual = 0;
+                        cliente.MontoActual = 0;
+                        cliente.EstadoCuenta = 0;
+                    }
+                }                
             }
             else 
             {
@@ -68,25 +83,29 @@ namespace OasisFamiliarWebSite.Controllers
         [HttpPost]
         public ActionResult MenuPage(int idfactura, int idMenu, int cantidad)
         {
-  
+
+            if (idfactura == 0) {
+                ViewBag.Error = "Antes de Ordenar favor solicitad una mesa"; 
+            }
+            else {
                 Comprado orden = new Comprado();
                 orden.Cantidad = cantidad;
                 orden.idFactura = idfactura;
                 orden.idMenu = idMenu;
+                orden.estado = 1;
+                orden.Fecha = DateTime.Now;
 
                 using (var context = new ContextDB())
                 {
                     context.Comprado.Add(orden);
                     context.SaveChanges();
                 }
+            }
 
             ViewBag.Message = idfactura;
             List<Menu> Listado = null;
 
-            Listado = datosOrden.GetMenu();
-
-            ViewBag.Data.FacturaActual = idfactura;
-
+            Listado = datosOrden.GetMenu();   
             return View(Listado);
         }
       
