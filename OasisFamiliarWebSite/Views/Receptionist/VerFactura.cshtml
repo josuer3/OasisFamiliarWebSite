@@ -8,6 +8,34 @@
 <h2 style="text-align:center;">Factura: @ViewBag.Data.idFactura</h2>
 <h3 style="text-align:center;">@ViewBag.Data.Fecha</h3>
 
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">¿ Desea Pagar la cuenta ?</h4>
+            </div>
+
+            <div style="col-md-4 mx-auto">
+                <form method="post" action="@Url.Action("Factura", "Receptionist")">
+
+                    <h1>
+                        @* un pequeño espacio para que se vear ordenado *@
+                    </h1>
+
+                  
+
+                    <div class="modal-footer">
+                        <input type="submit" text-align="center" value="Si " class="btn btn-primary" />
+                        <input type="submit" text-align="center" value="No" class="btn btn-primary" />
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
 <table class="table table-bordered border border-success ">
     <thead class="thead-dark">
@@ -43,10 +71,11 @@
 </table>
 
 <div class="btn-group" contextmenu="center">
-    <button type="button" class="btn btn-success " data-target="pagado">Pagar</button>
+    <button type="button" class="btn btn-success edit_button " data-toggle="modal" data-target="#myModal" data-id="Html.DisplayFor(modelItem => item.idMesa)">Pagar</button>
     <button type="button" class="btn btn-danger " data-target="cancelado">Cancelar Factura</button>
     <button type="button" class="btn btn-warning" data-target="all">Pago Pendiente</button>
 </div>
+
 
 
 
@@ -71,3 +100,20 @@
 
 
 
+<script>
+
+    $(document).on("click", '.edit_button', function (e) {
+        var id = $(this).data('id');
+        var fac = $(this).data('factura');
+
+        console.log(id);
+        $(".edit_id").val(id);
+        console.log(fac);
+        $(".factura_id").val(fac);
+
+
+        $(".modal-title").val("Crear Factura para Mesa" + id);
+    });
+
+
+</script>
